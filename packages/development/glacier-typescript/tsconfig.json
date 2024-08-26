@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "declaration": true,
+    "target": "ESNext",
+    "moduleResolution": "Node",
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "outDir": "${configDir}/dist",
+    "declarationDir": "${configDir}/types"
+  },
+  "include": ["${configDir}/index.ts", "${configDir}/src/**/*.ts"]
+}

@@ -1,0 +1,9 @@
+exclude_patterns:
+  - "packages/production/*/src/__mocks__"
+  - "packages/development/**/*"
+checks:
+  file-lines:
+    config:
+      threshold: 100
+  similar-code:
+    enabled: false

@@ -1,0 +1,30 @@
+{
+  "$schema": "./node_modules/nx/schemas/nx-schema.json",
+  "defaultBase": "main",
+  "namedInputs": {
+    "source": [
+      "{projectRoot}/index.ts",
+      "{projectRoot}/src/**/*.ts"
+    ]
+  },
+  "targetDefaults": {
+    "build": {
+      "dependsOn": [
+        "^build"
+      ],
+      "inputs": ["source"],
+      "outputs": [
+        "{projectRoot}/dist",
+        "{projectRoot}/types"
+      ],
+      "cache": true
+    },
+    "lint": {
+      "inputs": ["source"],
+      "dependsOn": [
+        "build"
+      ],
+      "cache": true
+    }
+  }
+}

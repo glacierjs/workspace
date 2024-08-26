@@ -1,0 +1,30 @@
+{
+  "private": true,
+  "name": "@glacier/eslint-config",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "types": "types/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "lint": "eslint index.ts src",
+    "lint:fix": "eslint index.ts src --fix"
+  },
+  "devDependencies": {
+    "@glacier/typescript": "^1.0.0",
+    "@types/eslint": "8.56.2",
+    "@typescript-eslint/eslint-plugin": "^8.2.0",
+    "@typescript-eslint/parser": "^8.2.0",
+    "eslint": "^8.56.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-import-resolver-typescript": "^3.6.3",
+    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-jest": "^28.8.0",
+    "eslint-plugin-jest-formatting": "^3.1.0",
+    "eslint-plugin-only-error": "^1.0.2",
+    "eslint-plugin-prettier": "^5.2.1",
+    "eslint-plugin-sonarjs": "^2.0.1",
+    "eslint-plugin-unicorn": "^55.0.0",
+    "prettier": "^3.3.3",
+    "nx": "19.6.2"
+  }
+}

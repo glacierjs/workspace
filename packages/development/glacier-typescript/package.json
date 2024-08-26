@@ -1,0 +1,13 @@
+{
+  "name": "@glacier/typescript",
+  "version": "1.0.0",
+  "private": true,
+  "exports": {
+    "./cjs": "./tsconfig.cjs.json",
+    "./esm": "./tsconfig.esm.json"
+  },
+  "devDependencies": {
+    "typescript": "^5.5.4",
+    "@types/node": "^22.5.0"
+  }
+}

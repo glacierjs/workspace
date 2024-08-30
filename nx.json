@@ -22,7 +22,8 @@
     "lint": {
       "inputs": ["source"],
       "dependsOn": [
-        "build"
+        "build",
+        "^build"
       ],
       "cache": true
     }

@@ -4,7 +4,12 @@
   "coverageReporters": [
     "clover",
     "json",
-    "lcov",
+    [
+      "lcov",
+      {
+        "projectRoot": "../../../"
+      }
+    ],
     "text",
     "html"
   ],

@@ -21,6 +21,7 @@ node_modules/
 # Build
 packages/*/*/types
 packages/*/*/dist
+packages/*/*/coverage
 
 # NX
 .nx/

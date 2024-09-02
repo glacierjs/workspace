@@ -1,5 +1,3 @@
-import { HttpResponseCookie } from './HttpResponseCookie';
-
 export class HttpRequestCookie {
   public readonly name: string;
   public readonly value: string;
@@ -12,7 +10,7 @@ export class HttpRequestCookie {
   public static fromHeader(header: string): HttpRequestCookie[] {
     return header.split(';').map((cookie) => {
       const [name, value] = cookie.split('=');
-      return new HttpResponseCookie(name, value);
+      return new HttpRequestCookie(name, value);
     });
   }
 }

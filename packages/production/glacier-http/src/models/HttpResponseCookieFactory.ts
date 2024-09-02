@@ -30,10 +30,7 @@ export class HttpResponseCookieFactory extends HttpResponseHeaderFactory {
     attributes: HttpCookieAttributes = {}
   ): this {
     const header = this.getHeader('Set-Cookie');
-    if (!header) {
-      return this;
-    }
-    const cookies = new HttpResponseCookies(header);
+    const cookies = new HttpResponseCookies(header ?? []);
     cookies.setCookie(name, value, attributes);
     return this.setHeader('Set-Cookie', cookies.toHeader());
   }

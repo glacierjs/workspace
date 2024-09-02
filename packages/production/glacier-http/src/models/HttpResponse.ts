@@ -19,7 +19,7 @@ export class HttpResponse extends HttpResponseCookieFactory {
     }
     res.statusCode = this.status;
 
-    if (typeof this.body !== 'string') {
+    if (this.body !== undefined) {
       res.write(this.body);
     }
 

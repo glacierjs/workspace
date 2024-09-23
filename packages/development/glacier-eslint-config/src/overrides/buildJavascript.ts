@@ -26,8 +26,10 @@ export function buildJavascript(): Linter.ConfigOverride<Linter.RulesRecord> {
       'unicorn/no-object-as-default-parameter': 'off',
       'unicorn/prefer-module': 'off',
       'unicorn/numeric-separators-style': 'off',
+      'unicorn/prefer-ternary': 'off',
       'sonarjs/prefer-single-boolean-return': 'off',
-      'sonarjs/cognitive-complexity': ['error', 5]
+      'sonarjs/cognitive-complexity': ['error', 5],
+      'unicorn/no-array-for-each': 'off'
     }
   };
 }

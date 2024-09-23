@@ -4,10 +4,13 @@
   "private": true,
   "exports": {
     "./cjs": "./tsconfig.cjs.json",
-    "./esm": "./tsconfig.esm.json"
+    "./esm": "./tsconfig.esm.json",
+    "./tsconfig.esm.json": "./tsconfig.esm.json",
+    "./tsconfig.cjs.json": "./tsconfig.cjs.json"
   },
   "devDependencies": {
     "typescript": "^5.5.4",
-    "@types/node": "^22.5.0"
+    "@types/node": "^22.5.0",
+    "ts-node": "^10.9.2"
   }
 }

@@ -8,7 +8,8 @@
     "allowSyntheticDefaultImports": true,
     "strict": true,
     "outDir": "${configDir}/dist",
-    "declarationDir": "${configDir}/types"
+    "declarationDir": "${configDir}/types",
+    "sourceMap": true
   },
-  "include": ["${configDir}/index.ts", "${configDir}/src/**/*.ts"]
+  "include": ["${configDir}/index.ts", "${configDir}/src/**/*.ts", "${configDir}/test/**/*.ts"]
 }

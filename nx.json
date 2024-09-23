@@ -5,6 +5,9 @@
     "source": [
       "{projectRoot}/index.ts",
       "{projectRoot}/src/**/*.ts"
+    ],
+    "scenarios": [
+      "{projectRoot}/test/scenarios/*.ts"
     ]
   },
   "targetDefaults": {
@@ -17,6 +20,16 @@
         "{projectRoot}/dist",
         "{projectRoot}/types"
       ],
+      "cache": true
+    },
+    "test:unit": {
+      "dependsOn": ["^build"],
+      "inputs": ["source"],
+      "cache": true
+    },
+    "test:scenario": {
+      "dependsOn": ["^build"],
+      "inputs": ["source", "scenarios"],
       "cache": true
     },
     "lint": {

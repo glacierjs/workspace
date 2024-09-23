@@ -4,7 +4,7 @@
   "main": "dist/index.js",
   "types": "types/index.d.ts",
   "scripts": {
-    "build": "tsc",
+    "build": "tsc -p tsconfig.build.json",
     "lint": "eslint index.ts src",
     "lint:fix": "eslint index.ts src --fix",
     "test": "jest"

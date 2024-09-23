@@ -1,20 +1,21 @@
 {
-  "private": true,
   "name": "@glacier/http",
   "version": "1.0.0",
   "main": "dist/index.js",
   "types": "types/index.d.ts",
   "scripts": {
-    "build": "tsc",
+    "build": "tsc -p tsconfig.build.json",
     "lint": "eslint index.ts src",
-    "lint:fix": "eslint index.ts src --fix"
+    "lint:fix": "eslint index.ts src --fix",
+    "test": "jest"
   },
   "dependencies": {
     "@glacier/utils": "^1.0.0"
   },
   "devDependencies": {
-    "@glacier/typescript": "^1.0.0",
     "@glacier/eslint-config": "^1.0.0",
-    "@glacier/types": "^1.0.0"
+    "@glacier/jest": "^1.0.0",
+    "@glacier/types": "^1.0.0",
+    "@glacier/typescript": "^1.0.0"
   }
 }

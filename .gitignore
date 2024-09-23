@@ -22,6 +22,8 @@ node_modules/
 packages/*/*/types
 packages/*/*/dist
 packages/*/*/coverage
+packages/*/*/test/coverage
+out/
 
 # NX
 .nx/

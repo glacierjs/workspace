@@ -1,6 +1,4 @@
-import type { Constructor } from '@glacier/types';
-
-export function getMethodNames(cls: Constructor): string[] {
+export function getMethodNames(cls: Function): string[] {
   const methods = new Set<string>();
   let currentProto = cls.prototype;
 

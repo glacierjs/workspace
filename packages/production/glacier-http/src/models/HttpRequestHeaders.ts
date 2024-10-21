@@ -9,6 +9,10 @@ export class HttpRequestHeaders {
     this.headers = this.parseHeaders(rawHeaders);
   }
 
+  public getAll(): Record<string, string[]> {
+    return { ...this.headers };
+  }
+
   /**
    * Always returns a list of all header values or undefined
    * if the header does not exist

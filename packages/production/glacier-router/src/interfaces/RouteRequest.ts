@@ -4,5 +4,5 @@ import type { AnyString } from '@glacier/types';
 export interface RouteRequest {
   method: HttpMethod;
   path: string;
-  headers: { [key in AnyString<`${HttpRequestHeader}`>]?: string };
+  headers: { [key in AnyString<`${HttpRequestHeader}`>]?: string | string[] };
 }

@@ -1,4 +1,4 @@
-import type { Optional } from '@glacier/types';
+import type { Constructor, Optional } from '@glacier/types';
 
 import { Reflection } from './Reflection';
 
@@ -15,14 +15,14 @@ export class ReflectionMap<T> {
     target: object,
     propertyKey?: string | symbol
   ): void {
-    const map = this.reflection.get(target, propertyKey) ?? new Map();
+    const map = this.reflection.get(target as Constructor, propertyKey) ?? new Map();
     map.set(key, value);
     this.reflection.set(map, target, propertyKey);
   }
 
   public get(
     key: string | number,
-    target: object,
+    target: Constructor,
     propertyKey?: string | symbol
   ): Optional<T> {
     const map = this.reflection.get(target, propertyKey);
@@ -31,7 +31,7 @@ export class ReflectionMap<T> {
 
   public has(
     key: string | number,
-    target: object,
+    target: Constructor,
     propertyKey?: string | symbol
   ): boolean {
     const map = this.reflection.get(target, propertyKey);
@@ -43,7 +43,7 @@ export class ReflectionMap<T> {
 
   public delete(
     key: string | number,
-    target: object,
+    target: Constructor,
     propertyKey?: string | symbol
   ): boolean {
     const map = this.reflection.get(target, propertyKey);

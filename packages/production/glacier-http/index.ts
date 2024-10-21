@@ -3,6 +3,7 @@ export * from './src/interfaces/HttpMethod';
 export * from './src/interfaces/HttpStatusCode';
 export * from './src/interfaces/HttpRequestHeader';
 export * from './src/interfaces/HttpResponseHeader';
+export * from './src/interfaces/HttpRequestHandler';
 
 // Exceptions
 export * from './src/exceptions/HttpException';
@@ -46,3 +47,17 @@ export * from './src/exceptions/HttpUpgradeRequiredException';
 export * from './src/exceptions/HttpUriTooLongException';
 export * from './src/exceptions/HttpVariantAlsoNegotiatesException';
 export * from './src/exceptions/HttpVersionNotSupportedException';
+
+// Models
+export * from './src/models/HttpRequest';
+export * from './src/models/HttpRequestCookie';
+export * from './src/models/HttpRequestCookies';
+export * from './src/models/HttpRequestHeaders';
+export * from './src/models/HttpResponse';
+export * from './src/models/HttpResponseCookie';
+export * from './src/models/HttpResponseCookieFactory';
+export * from './src/models/HttpResponseCookies';
+export * from './src/models/HttpResponseHeaderFactory';
+
+// Functions
+export * from './src/createRequestListener';

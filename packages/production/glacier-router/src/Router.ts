@@ -5,6 +5,7 @@ import type { ResolvedRoute } from './interfaces/ResolvedRoute';
 import type { RouteDefinition } from './interfaces/RouteDefinition';
 import type { RouteRequest } from './interfaces/RouteRequest';
 import { RouterTrie } from './models/RouterTrie';
+import { compareArray } from '@glacier/utils';
 
 export class Router<T> {
   private readonly routerTrie = new RouterTrie<RouteDefinition<T>>();
@@ -36,7 +37,10 @@ export class Router<T> {
       if (route.headers) {
         const entries = Object.entries(route.headers);
         for (const [name, value] of entries) {
-          if (request.headers[name] !== value) {
+          const a1 = Array.isArray(value) ? value : [value];
+          const a2 = Array.isArray(request.headers[name]) ? request.headers[name] : [request.headers[name]];
+
+          if (!compareArray(a1, a2)) {
             return false;
           }
         }

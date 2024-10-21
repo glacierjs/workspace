@@ -1,7 +1,7 @@
 import 'reflect-metadata';
 import { DESIGN_RETURN_TYPE } from '@glacier/reflection';
 import type { Constructor, Optional } from '@glacier/types';
-import { getMethodNames } from '@glacier/utils/src/getMethodNames';
+import { getMethodNames } from '@glacier/utils';
 import { AsyncLocalStorage } from 'node:async_hooks';
 import { randomUUID } from 'node:crypto';
 
@@ -135,7 +135,7 @@ export class DIContainer {
     return this.cacheMap.getInstance(cls);
   }
 
-  public resolveByTag<T>(tag: symbol): T[] {
+  public resolveByTag<T = object>(tag: symbol): T[] {
     const classList = this.tagMap.getClasses(tag);
     return classList.map((cls) => this.resolve(cls) as T);
   }

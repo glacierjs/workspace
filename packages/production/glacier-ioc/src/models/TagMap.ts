@@ -15,7 +15,7 @@ export class TagMap {
   public getClasses<T>(tag: symbol): Constructor<T>[] {
     const clsSet = this.map.get(tag);
     if (!clsSet) {
-      throw new TagNotRegistered(tag);
+      return [];
     }
     return [...clsSet.values()] as Constructor<T>[];
   }

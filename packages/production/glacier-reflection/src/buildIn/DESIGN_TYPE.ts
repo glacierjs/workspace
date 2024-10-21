@@ -1,3 +1,3 @@
-import { Reflection } from '../Reflection';
+import { ReadonlyReflection } from '../ReadonlyReflection';
 
-export const DESIGN_TYPE = new Reflection('design:type');
+export const DESIGN_TYPE = new ReadonlyReflection('design:type');

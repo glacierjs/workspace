@@ -7,6 +7,7 @@ it('should resolve constructor dependency imported by module', () => {
     public constructor(public readonly test: string) {}
   }
 
+
   @Module()
   class M {
     @Factory()

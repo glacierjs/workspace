@@ -1,5 +1,5 @@
-import { Reflection } from '../Reflection';
+import { ReadonlyReflection } from '../ReadonlyReflection';
 
-export const DESIGN_PARAM_TYPES = new Reflection<unknown[]>(
+export const DESIGN_PARAM_TYPES = new ReadonlyReflection<unknown[]>(
   'design:paramtypes'
 );

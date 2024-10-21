@@ -4,10 +4,18 @@ import { Get } from '../../src/decorators/Get';
 import { HttpResponse } from '@glacier/http';
 import { Microservice } from '../../src/Microservice';
 import request from 'supertest';
+import { Logger } from '@glacier/logger';
 
 it('should resolve a class by its constructor', async () => {
   @Controller()
   class ApplicationController {
+
+    public constructor(
+      private readonly logger: Logger
+    ) {
+      logger.setContext('Application');
+    }
+
     @Get()
     public health(): HttpResponse {
       return HttpResponse.build();
@@ -18,6 +26,7 @@ it('should resolve a class by its constructor', async () => {
     imports: [ApplicationController]
   })
   class ApplicationModule {
+
   }
 
 

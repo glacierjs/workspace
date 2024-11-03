@@ -1,19 +1,25 @@
+import { Factory } from '../../src/decorators/Factory';
+import { Module } from '../../src/decorators/Module';
 import { DIContainer } from '../../src/DIContainer';
-import { Component } from '../../src/decorators/Component';
 import { Scope } from '../../src/interfaces/Scope';
 
-it('should resolve scoped constructor dependency', () => {
-  @Component({ scope: Scope.SCOPED })
-  class A {}
+it('should call factory function once for a singleton scope', () => {
+  class A {
+  }
 
-  @Component({ scope: Scope.SCOPED })
-  class B {
-    public constructor(public a: A) {}
+  @Module()
+  class M {
+    @Factory({ scope: Scope.SINGLETON })
+    public createA(): A {
+      return new A();
+    }
   }
 
   const container = new DIContainer();
-  container.register(A);
-  container.register(B);
-  const b = container.resolve(B);
-  expect(b.a).toBeInstanceOf(A);
+  const spy = jest.spyOn(M.prototype, 'createA');
+  expect(spy).toHaveBeenCalledTimes(0);
+  container.register(M, M);
+  expect(spy).toHaveBeenCalledTimes(1);
+  expect(container.resolve(A)).toBeInstanceOf(A);
+  expect(spy).toHaveBeenCalledTimes(1);
 });

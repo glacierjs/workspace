@@ -1,21 +1,19 @@
-import { DIContainer } from '../../src/DIContainer';
-import { Component } from '../../src/decorators/Component';
-import { Inject } from '../../src/decorators/Inject';
+import { Component } from "../../src/decorators/Component";
+import { DIContainer } from "../../src/DIContainer";
 
-it('should resolve tag constructor dependency', () => {
-  const tag = Symbol();
+it('should resolve a list of instances', () => {
+  abstract class I {}
 
   @Component()
   class A {}
 
   @Component()
-  class B {
-    public constructor(@Inject(tag) public a: A[]) {}
-  }
+  class B {}
 
   const container = new DIContainer();
-  container.registerTag(tag, A);
-  container.register(B);
-  const b = container.resolve(B);
-  expect(b.a).toEqual([expect.any(A)]);
+  container.register(I, A);
+  container.register(I, B);
+
+  const instance = container.resolveAll(I);
+  expect(instance).toEqual([expect.any(A), expect.any(B)]);
 });

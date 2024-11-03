@@ -1,6 +1,6 @@
 export * from './src/decorators/Module';
 export * from './src/decorators/Component';
-export * from './src/decorators/Inject';
+export * from './src/decorators/Resolve';
 export * from './src/decorators/Factory';
 export * from './src/interfaces/Scope';
 export * from './src/interfaces/ComponentMeta';

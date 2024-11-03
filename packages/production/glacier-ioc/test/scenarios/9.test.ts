@@ -1,18 +1,20 @@
+import { Factory } from '../../src/decorators/Factory';
+import { Module } from '../../src/decorators/Module';
 import { DIContainer } from '../../src/DIContainer';
-import { Component } from '../../src/decorators/Component';
 
-it('should resolve singleton constructor dependency', () => {
-  @Component()
+it('should register components created by a factory', () => {
   class A {}
 
-  @Component()
-  class B {
-    public constructor(public a: A) {}
+  @Module()
+  class M {
+
+    @Factory()
+    public createA(): A {
+      return new A();
+    }
   }
 
   const container = new DIContainer();
-  container.register(A);
-  container.register(B);
-  const b = container.resolve(B);
-  expect(b.a).toBeInstanceOf(A);
+  container.register(M, M);
+  expect(container.resolve(A)).toBeInstanceOf(A);
 });

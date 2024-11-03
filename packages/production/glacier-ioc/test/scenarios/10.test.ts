@@ -1,19 +1,25 @@
+import { Factory } from '../../src/decorators/Factory';
+import { Module } from '../../src/decorators/Module';
 import { DIContainer } from '../../src/DIContainer';
-import { Component } from '../../src/decorators/Component';
-import { Scope } from '../../src/interfaces/Scope';
 
-it('should resolve transient constructor dependency', () => {
-  @Component({ scope: Scope.TRANSIENT })
+it('should ignore module methods that are not decorated with @Factory', () => {
   class A {}
+  class B {}
 
-  @Component({ scope: Scope.TRANSIENT })
-  class B {
-    public constructor(public a: A) {}
+  @Module()
+  class M {
+
+    @Factory()
+    public createA(): A {
+      return new A();
+    }
+
+    public createB(): B {
+      return new B();
+    }
   }
 
   const container = new DIContainer();
-  container.register(A);
-  container.register(B);
-  const b = container.resolve(B);
-  expect(b.a).toBeInstanceOf(A);
+  container.register(M, M);
+  expect(container.resolve(B)).toBeUndefined();
 });

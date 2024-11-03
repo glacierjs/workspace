@@ -1,15 +1,20 @@
-import { DIContainer } from '../../src/DIContainer';
-import { Component } from '../../src/decorators/Component';
+import { Component } from "../../src/decorators/Component";
+import { DIContainer } from "../../src/DIContainer";
 
-it('should resolve tag provided in component meta', () => {
-  const tagA = Symbol();
-  const tagB = Symbol();
+it('should throw an error if multiple instances are defined', () => {
+  abstract class I {}
 
-  @Component({ tags: [tagA, tagB] })
+  @Component()
   class A {}
 
+  @Component()
+  class B {}
+
   const container = new DIContainer();
-  container.register(A);
-  expect(container.resolveByTag(tagA)).toEqual([expect.any(A)]);
-  expect(container.resolveByTag(tagB)).toEqual([expect.any(A)]);
+  container.register(I, A);
+  container.register(I, B);
+
+  expect(() => {
+    container.resolve(I);
+  }).toThrow();
 });

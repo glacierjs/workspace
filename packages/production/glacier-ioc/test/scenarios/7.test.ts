@@ -1,13 +1,22 @@
-import { DIContainer } from '../../src/DIContainer';
 import { Component } from '../../src/decorators/Component';
-import { Scope } from '../../src/interfaces/Scope';
+import { Module } from '../../src/decorators/Module';
+import { DIContainer } from '../../src/DIContainer';
 
-it('should return the new instances of the constructor when scope is set to transient', () => {
-  @Component({ scope: Scope.TRANSIENT })
-  class Test {}
+it('should register imported components by a module', () => {
+  @Component()
+  class A {}
+
+  @Component()
+  class B {}
+
+  @Module({
+    imports: [A, B]
+  })
+  class M {}
+
   const container = new DIContainer();
-  container.register(Test);
-  const instanceA = container.resolve(Test);
-  const instanceB = container.resolve(Test);
-  expect(instanceA).not.toBe(instanceB);
+  container.register(M, M);
+  expect(container.resolve(A)).toBeInstanceOf(A);
+  expect(container.resolve(B)).toBeInstanceOf(B);
+  expect(container.resolve(M)).toBeInstanceOf(M);
 });

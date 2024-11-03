@@ -8,28 +8,17 @@ export class ReadonlyReflection<T> {
   }
 
   public get(target: Constructor | object, propertyKey?: string | symbol): Optional<T> {
-    const constructor = this.getConstructor(target);
     // @ts-ignore
-    return Reflect.getMetadata(this.key, constructor, propertyKey);
+    return Reflect.getMetadata(this.key, target, propertyKey);
   }
 
   public has(target: Constructor | object, propertyKey?: string | symbol): boolean {
-    const constructor = this.getConstructor(target);
     // @ts-ignore
-    return Reflect.hasMetadata(this.key, constructor, propertyKey);
+    return Reflect.hasMetadata(this.key, target, propertyKey);
   }
 
   public hasOwn(target: Constructor | object, propertyKey?: string | symbol): boolean {
-    const constructor = this.getConstructor(target);
     // @ts-ignore
-    return Reflect.hasOwnMetadata(this.key, constructor, propertyKey);
-  }
-
-
-  protected getConstructor(target: object | Constructor): Constructor {
-    if (typeof target === 'object') {
-      return target.constructor as Constructor;
-    }
-    return target;
+    return Reflect.hasOwnMetadata(this.key, target, propertyKey);
   }
 }

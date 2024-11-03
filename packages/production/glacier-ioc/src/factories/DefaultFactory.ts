@@ -1,11 +1,10 @@
 import { DESIGN_PARAM_TYPES } from '@glacier/reflection';
-import type { Constructor } from '@glacier/types';
+import { Constructor, isConstructor } from '@glacier/types';
 
 import type { DIContainer } from '../DIContainer';
 import { UnresolvableParam } from '../exceptions/UnresolvableParam';
 import type { InstanceFactory } from '../interfaces/InstanceFactory';
-import { IOC_CONSTRUCTOR_TAG } from '../reflection/IOC_CONSTRUCTOR_TAG';
-import { isConstructor } from '../typeguards/isConstructor';
+import { IOC_CONSTRUCTOR_PARAM } from '../reflection/IOC_CONSTRUCTOR_PARAM';
 
 export class DefaultFactory<T> implements InstanceFactory<T> {
   private readonly container: DIContainer;
@@ -28,14 +27,20 @@ export class DefaultFactory<T> implements InstanceFactory<T> {
       return [];
     }
     return paramTypes.map((paramType, index) => {
-      const tag = IOC_CONSTRUCTOR_TAG.get(index, cls);
-      if (tag) {
-        return this.container.resolveByTag(tag);
+      const constructorParamMeta = IOC_CONSTRUCTOR_PARAM.get(index, cls);
+      if (constructorParamMeta) {
+        if (constructorParamMeta.isArray) {
+          return this.container.resolveAll(constructorParamMeta.target);
+        } else if (constructorParamMeta.isOptional) {
+          return this.container.resolve(constructorParamMeta.target);
+        } else {
+          return this.container.resolveOrThrow(constructorParamMeta.target);
+        }
       }
       if (!isConstructor(paramType)) {
         throw new UnresolvableParam(cls, paramType, index);
       }
-      return this.container.resolve(paramType);
+      return this.container.resolveOrThrow(paramType);
     });
   }
 }

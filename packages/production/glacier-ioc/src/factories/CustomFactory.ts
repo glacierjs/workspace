@@ -15,7 +15,7 @@ export class CustomFactory<T> implements InstanceFactory<T> {
   }
 
   public create(): T {
-    const instance = this.container.resolve<any>(this.cls);
+    const instance = this.container.resolveOrThrow<any>(this.cls);
     return instance[this.method](this.container) as T;
   }
 }

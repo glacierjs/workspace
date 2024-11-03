@@ -4,6 +4,7 @@ export function isConstructor(value: unknown): value is Constructor {
   return (
     typeof value === 'function' &&
     value.prototype &&
-    value.prototype.constructor === value
+    value.prototype.constructor === value &&
+    value.toString().startsWith('class')
   );
 }

@@ -1,23 +1,43 @@
-import { DIContainer } from '../../src/DIContainer';
-import { Component } from '../../src/decorators/Component';
+import { Factory } from '../../src/decorators/Factory';
 import { Module } from '../../src/decorators/Module';
+import { DIContainer } from '../../src/DIContainer';
+import { Scope } from '../../src/interfaces/Scope';
 
-it('should resolve constructor dependency imported by module', () => {
-  @Component()
-  class A {}
-
-  @Component()
-  class B {
-    public constructor(public a: A) {}
+it('should return a new instance for every new request scope when scope is SCOPED and created by a factory', () => {
+  class A {
   }
 
-  @Module({
-    imports: [A, B]
-  })
-  class M {}
+  @Module()
+  class M {
+
+    @Factory({ scope: Scope.SCOPED })
+    public createA(): A {
+      return new A();
+    }
+  }
 
   const container = new DIContainer();
-  container.register(M);
-  const b = container.resolve(B);
-  expect(b.a).toBeInstanceOf(A);
+  container.register(M, M);
+
+  const instanceA = container.resolve(A);
+  expect(instanceA).toBeInstanceOf(A);
+  expect(container.resolve(A)).toBe(instanceA);
+
+  function scopeA() {
+    const instanceB = container.resolve(A);
+    expect(instanceB).toBeInstanceOf(A);
+    expect(instanceA).not.toBe(instanceB);
+    expect(container.resolve(A)).toBe(instanceB);
+  }
+
+
+  function scopeB() {
+    const instanceC = container.resolve(A);
+    expect(instanceC).toBeInstanceOf(A);
+    expect(instanceA).not.toBe(instanceC);
+    expect(container.resolve(A)).toBe(instanceC);
+  }
+
+  container.createScope(scopeA);
+  container.createScope(scopeB);
 });

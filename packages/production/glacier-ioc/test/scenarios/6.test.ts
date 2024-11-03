@@ -1,13 +1,11 @@
 import { DIContainer } from '../../src/DIContainer';
 
-it('should return multiple instances when tagged with the same tag', () => {
-  const test = Symbol();
-  class TestA {}
-  class TestB {}
+it('should throw an error if given target is not registered', () => {
+  class A {
+  }
+
   const container = new DIContainer();
-  container.registerTag(test, TestA);
-  container.registerTag(test, TestB);
-  const [a, b] = container.resolveByTag(test);
-  expect(a).toBeInstanceOf(TestA);
-  expect(b).toBeInstanceOf(TestB);
+  expect(() => {
+    container.resolveOrThrow(A);
+  }).toThrow();
 });

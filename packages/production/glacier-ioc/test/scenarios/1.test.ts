@@ -1,9 +1,9 @@
 import { DIContainer } from '../../src/DIContainer';
 
-it('should resolve a class by its constructor', () => {
-  class Test {}
+it('should throw an error if a class is registered that is not decorated', () => {
+  class A {}
   const container = new DIContainer();
-  container.register(Test);
-  const instance = container.resolve(Test);
-  expect(instance).toBeInstanceOf(Test);
+  expect(() => {
+    container.register(A, A);
+  }).toThrow();
 });

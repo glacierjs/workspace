@@ -1,5 +1,6 @@
 import { DESIGN_PARAM_TYPES } from '@glacier/reflection';
-import { Constructor, isConstructor } from '@glacier/types';
+import type { Constructor } from '@glacier/types';
+import { isConstructor } from '@glacier/types';
 
 import type { DIContainer } from '../DIContainer';
 import { UnresolvableParam } from '../exceptions/UnresolvableParam';
@@ -33,9 +34,8 @@ export class DefaultFactory<T> implements InstanceFactory<T> {
           return this.container.resolveAll(constructorParamMeta.target);
         } else if (constructorParamMeta.isOptional) {
           return this.container.resolve(constructorParamMeta.target);
-        } else {
-          return this.container.resolveOrThrow(constructorParamMeta.target);
         }
+        return this.container.resolveOrThrow(constructorParamMeta.target);
       }
       if (!isConstructor(paramType)) {
         throw new UnresolvableParam(cls, paramType, index);

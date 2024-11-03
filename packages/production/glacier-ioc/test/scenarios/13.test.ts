@@ -1,7 +1,6 @@
-import { Component } from "../../src/decorators/Component";
-import { DIContainer } from "../../src/DIContainer";
-import { Scope } from "../../src/interfaces/Scope";
-import { Inject } from '../../types';
+import { Component } from '../../src/decorators/Component';
+import { DIContainer } from '../../src/DIContainer';
+import { Scope } from '../../src/interfaces/Scope';
 
 it('should return a new instance for every new request scope when scope is SCOPED', () => {
   @Component({ scope: Scope.SCOPED })

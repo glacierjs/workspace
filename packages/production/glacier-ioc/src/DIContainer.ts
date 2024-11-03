@@ -1,31 +1,36 @@
 import 'reflect-metadata';
-import { AbstractConstructor, Constructor, isConstructor, Optional } from '@glacier/types';
-import { IOC_COMPONENT } from './reflection/IOC_COMPONENT';
-import { MissingComponentDecorator } from './exceptions/MissingComponentDecorator';
-import { Scope } from './interfaces/Scope';
-import { InstanceFactory } from './interfaces/InstanceFactory';
-import { InstanceCache } from './interfaces/InstanceCache';
-import { SingletonCache } from './caches/SingletonCache';
-import { TransientCache } from './caches/TransientCache';
-import { ScopedCache } from './caches/ScopedCache';
-import { AsyncLocalStorage } from 'node:async_hooks';
-import { DefaultFactory } from './factories/DefaultFactory';
-import { IOC_COMPONENT_META } from './reflection/IOC_COMPONENT_META';
-import { IOC_MODULE } from './reflection/IOC_MODULE';
-import { getMethodNames } from '@glacier/utils';
-import { IOC_FACTORY } from './reflection/IOC_FACTORY';
-import { IOC_FACTORY_META } from './reflection/IOC_FACTORY_META';
 import { DESIGN_RETURN_TYPE } from '@glacier/reflection';
-import { ValueNotAConstructor } from './exceptions/ValueNotAConstructor';
-import { CustomFactory } from './factories/CustomFactory';
-import { IOC_MODULE_META } from './reflection/IOC_MODULE_META';
-import { InstanceNotRegistered } from './exceptions/InstanceNotRegistered';
-import { MultipleImplementationsRegistered } from './exceptions/MultipleImplementationsRegistered';
-import { CacheStore } from './util/CacheStore';
+import type {
+  AbstractConstructor,
+  Constructor,
+  Optional
+} from '@glacier/types';
+import { isConstructor } from '@glacier/types';
+import { getMethodNames } from '@glacier/utils';
+import { AsyncLocalStorage } from 'node:async_hooks';
 import { randomUUID } from 'node:crypto';
 
-export class DIContainer {
+import { ScopedCache } from './caches/ScopedCache';
+import { SingletonCache } from './caches/SingletonCache';
+import { TransientCache } from './caches/TransientCache';
+import { InstanceNotRegistered } from './exceptions/InstanceNotRegistered';
+import { MissingComponentDecorator } from './exceptions/MissingComponentDecorator';
+import { MultipleImplementationsRegistered } from './exceptions/MultipleImplementationsRegistered';
+import { ValueNotAConstructor } from './exceptions/ValueNotAConstructor';
+import { CustomFactory } from './factories/CustomFactory';
+import { DefaultFactory } from './factories/DefaultFactory';
+import type { InstanceCache } from './interfaces/InstanceCache';
+import type { InstanceFactory } from './interfaces/InstanceFactory';
+import { Scope } from './interfaces/Scope';
+import { IOC_COMPONENT } from './reflection/IOC_COMPONENT';
+import { IOC_COMPONENT_META } from './reflection/IOC_COMPONENT_META';
+import { IOC_FACTORY } from './reflection/IOC_FACTORY';
+import { IOC_FACTORY_META } from './reflection/IOC_FACTORY_META';
+import { IOC_MODULE } from './reflection/IOC_MODULE';
+import { IOC_MODULE_META } from './reflection/IOC_MODULE_META';
+import { CacheStore } from './util/CacheStore';
 
+export class DIContainer {
   /**
    * The AsyncLocalStorage used to create scoped instances with the ScopedCache.
    * @private
@@ -43,7 +48,10 @@ export class DIContainer {
    * @param target The target, that can be used to resolve an instance of the implementation.
    * @param implementation The implementation that should be used to create an instance from.
    */
-  public register<T>(target: AbstractConstructor<T>, implementation: Constructor<NoInfer<T>>): this {
+  public register<T>(
+    target: AbstractConstructor<T>,
+    implementation: Constructor<NoInfer<T>>
+  ): this {
     this.assertComponent(implementation);
     this.registerDefaultFactory(target, implementation);
     const isModule = IOC_MODULE.has(target);
@@ -131,9 +139,18 @@ export class DIContainer {
    * @param methodName The method name of the factory.
    * @private
    */
-  private registerModuleFactory(implementation: Constructor, methodName: string) {
-    const factoryMeta = IOC_FACTORY_META.get(implementation.prototype, methodName)!;
-    const factoryReturnType = DESIGN_RETURN_TYPE.get(implementation.prototype, methodName);
+  private registerModuleFactory(
+    implementation: Constructor,
+    methodName: string
+  ) {
+    const factoryMeta = IOC_FACTORY_META.get(
+      implementation.prototype,
+      methodName
+    )!;
+    const factoryReturnType = DESIGN_RETURN_TYPE.get(
+      implementation.prototype,
+      methodName
+    );
     this.assertConstructor(factoryReturnType);
     const customFactory = new CustomFactory(this, implementation, methodName);
     const scope = factoryMeta.scope ?? Scope.SINGLETON;

@@ -1,4 +1,4 @@
-import { AbstractConstructor } from '@glacier/types';
+import type { AbstractConstructor } from '@glacier/types';
 
 export interface ConstructorParamMeta {
   target: AbstractConstructor;

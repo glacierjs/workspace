@@ -1,5 +1,5 @@
 {
-  "name": "@glacier/ioc",
+  "name": "@glacier/context",
   "version": "1.0.0",
   "main": "dist/index.js",
   "types": "types/index.d.ts",
@@ -7,17 +7,12 @@
     "build": "tsc -p tsconfig.build.json",
     "lint": "eslint index.ts src",
     "lint:fix": "eslint index.ts src --fix",
+    "test:unit": "jest",
     "test:scenario": "jest --config ./test/jest.config.json"
-  },
-  "dependencies": {
-    "@glacier/context": "^1.0.0",
-    "@glacier/reflection": "^1.0.0",
-    "@glacier/utils": "^1.0.0"
   },
   "devDependencies": {
     "@glacier/eslint-config": "^1.0.0",
     "@glacier/jest": "^1.0.0",
-    "@glacier/types": "^1.0.0",
     "@glacier/typescript": "^1.0.0"
   }
 }

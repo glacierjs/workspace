@@ -7,8 +7,6 @@ import type {
 } from '@glacier/types';
 import { isConstructor } from '@glacier/types';
 import { getMethodNames } from '@glacier/utils';
-import { AsyncLocalStorage } from 'node:async_hooks';
-import { randomUUID } from 'node:crypto';
 
 import { ScopedCache } from './caches/ScopedCache';
 import { SingletonCache } from './caches/SingletonCache';
@@ -32,12 +30,6 @@ import { CacheStore } from './util/CacheStore';
 
 export class DIContainer {
   /**
-   * The AsyncLocalStorage used to create scoped instances with the ScopedCache.
-   * @private
-   */
-  private static store = new AsyncLocalStorage<symbol>();
-
-  /**
    * Contains all assignments of component targets to a list of instance caches.
    * @private
    */
@@ -59,16 +51,6 @@ export class DIContainer {
       this.registerModule(implementation);
     }
     return this;
-  }
-
-  /**
-   * Creates a new request scope
-   * @param callback The function that should be run within the scope.
-   */
-  public createScope<T>(callback: () => T): T {
-    const scopeId = randomUUID();
-    const scope = Symbol(scopeId);
-    return DIContainer.store.run(scope, callback);
   }
 
   /**
@@ -213,7 +195,7 @@ export class DIContainer {
         return new TransientCache(factory);
       }
       case Scope.SCOPED: {
-        return new ScopedCache(DIContainer.store, factory);
+        return new ScopedCache(factory);
       }
     }
   }

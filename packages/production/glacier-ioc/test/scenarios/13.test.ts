@@ -1,11 +1,12 @@
-import { Component } from '../../src/decorators/Component';
+import { globalContext } from '@glacier/context';
+
 import { DIContainer } from '../../src/DIContainer';
+import { Component } from '../../src/decorators/Component';
 import { Scope } from '../../src/interfaces/Scope';
 
 it('should return a new instance for every new request scope when scope is SCOPED', () => {
   @Component({ scope: Scope.SCOPED })
-  class A {
-  }
+  class A {}
 
   const container = new DIContainer();
   container.register(A, A);
@@ -20,7 +21,6 @@ it('should return a new instance for every new request scope when scope is SCOPE
     expect(container.resolve(A)).toBe(instanceB);
   }
 
-
   function scopeB() {
     const instanceC = container.resolve(A);
     expect(instanceC).toBeInstanceOf(A);
@@ -28,6 +28,6 @@ it('should return a new instance for every new request scope when scope is SCOPE
     expect(container.resolve(A)).toBe(instanceC);
   }
 
-  container.createScope(scopeA);
-  container.createScope(scopeB);
+  globalContext.run(scopeA);
+  globalContext.run(scopeB);
 });

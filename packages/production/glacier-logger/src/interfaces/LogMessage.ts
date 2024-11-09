@@ -1,7 +1,7 @@
-import { LogLevel } from './LogLevel';
+import type { LogLevel } from './LogLevel';
 
-export interface LogMessage<M> {
-  message: M;
-  context?: string;
-  logLevel: LogLevel;
+export interface LogMessage<T> {
+  context: string;
+  level: LogLevel;
+  message: T;
 }

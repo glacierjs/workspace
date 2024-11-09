@@ -11,9 +11,10 @@
     "test:scenario": "jest --config ./test/jest.config.json"
   },
   "dependencies": {
-    "@glacier/reflection": "^1.0.0",
-    "@glacier/ioc": "^1.0.0",
+    "@glacier/context": "^1.0.0",
     "@glacier/http": "^1.0.0",
+    "@glacier/ioc": "^1.0.0",
+    "@glacier/reflection": "^1.0.0",
     "@glacier/router": "^1.0.0",
     "@glacier/utils": "^1.0.0"
   },

@@ -1,19 +1,18 @@
-import { Module } from '@glacier/ioc';
+import { HttpResponse } from '@glacier/http';
+import { Factory, Module } from '@glacier/ioc';
+import { ConsoleTransport, LogFactory, LogLevel } from '@glacier/logger';
+import request from 'supertest';
+
+import { Microservice } from '../../src/Microservice';
 import { Controller } from '../../src/decorators/Controller';
 import { Get } from '../../src/decorators/Get';
-import { HttpResponse } from '@glacier/http';
-import { Microservice } from '../../src/Microservice';
-import request from 'supertest';
-import { Logger } from '@glacier/logger';
 
 it('should resolve a class by its constructor', async () => {
   @Controller()
   class ApplicationController {
-
-    public constructor(
-      private readonly logger: Logger
-    ) {
-      logger.setContext('Application');
+    public constructor(logFactory: LogFactory) {
+      const logger = logFactory.create('Application');
+      logger.debug({ message: 'Create ApplicationController' });
     }
 
     @Get()
@@ -26,9 +25,15 @@ it('should resolve a class by its constructor', async () => {
     imports: [ApplicationController]
   })
   class ApplicationModule {
-
+    @Factory({})
+    public createLogger(): LogFactory {
+      return new LogFactory({
+        level: LogLevel.DEBUG,
+        defaultMeta: {},
+        transports: [new ConsoleTransport()]
+      });
+    }
   }
-
 
   const microservice = new Microservice(ApplicationModule);
   await request(microservice).get('/').expect(200);

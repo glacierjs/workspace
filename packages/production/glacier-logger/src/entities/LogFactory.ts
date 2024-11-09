@@ -1,7 +1,7 @@
 import { Logger } from '../Logger';
 import type { LogConfig } from '../interfaces/LogConfig';
 
-export class LogFactory<V, M> {
+export class LogFactory<V = { message: string }, M = {}> {
   public constructor(private readonly config: LogConfig<V, M>) {}
 
   public create(context: string): Logger<V, M> {

@@ -96,8 +96,8 @@ export class DIContainer {
    * @private
    */
   private registerModule(implementation: Constructor): void {
-    this.registerModuleImports(implementation);
     this.registerModuleFactories(implementation);
+    this.registerModuleImports(implementation);
   }
 
   /**
@@ -175,6 +175,12 @@ export class DIContainer {
     const cache = this.createCacheForScope(scope, factory);
     this.store.addCache(target, cache);
     this.store.addCache(implementation, cache);
+
+    if (componentMeta.implements) {
+      for (const implementation of componentMeta.implements) {
+        this.store.addCache(implementation, cache);
+      }
+    }
   }
 
   /**

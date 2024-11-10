@@ -25,4 +25,4 @@ jobs:
         with:
           debug: 'true'
           coverageLocations: |
-            ${{github.workspace}}/packages/production/*/coverage/lcov.info:lcov
+            ${{github.workspace}}/packages/production/glacier-context/coverage/lcov.info:lcov

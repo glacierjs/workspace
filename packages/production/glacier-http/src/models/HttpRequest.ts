@@ -26,6 +26,6 @@ export class HttpRequest {
     this.url = new URL(`http://localhost${incomingMessage.url}`);
     this.headers = new HttpRequestHeaders(incomingMessage.rawHeaders);
     this.trailers = new HttpRequestHeaders(incomingMessage.rawTrailers);
-    this.cookies = new HttpRequestCookies(this.headers.get('Cookie') ?? []);
+    this.cookies = new HttpRequestCookies(this.headers.get('Cookie'));
   }
 }

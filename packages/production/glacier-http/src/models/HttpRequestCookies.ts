@@ -5,7 +5,7 @@ import { HttpRequestCookie } from './HttpRequestCookie';
 export class HttpRequestCookies {
   private readonly cookies: HttpRequestCookie[];
 
-  public constructor(cookieHeaders: Readonly<string[]>) {
+  public constructor(cookieHeaders: Readonly<string[]> = []) {
     this.cookies = this.parseCookies(cookieHeaders);
   }
 

@@ -27,16 +27,16 @@ export class HttpResponseHeaderFactory {
     name: AnyString<`${HttpResponseHeaders}`>,
     value: string | string[]
   ): this {
-    if (this.headers.has(name)) {
-      const header = this.headers.get(name)!;
-      if (Array.isArray(value)) {
-        header.push(...value);
-      } else {
-        header.push(value);
-      }
-      return this;
+    if (!this.headers.has(name)) {
+      return this.setHeader(name, value);
     }
-    return this.setHeader(name, value);
+    const header = this.headers.get(name)!;
+    if (Array.isArray(value)) {
+      header.push(...value);
+    } else {
+      header.push(value);
+    }
+    return this;
   }
 
   public setHeader(

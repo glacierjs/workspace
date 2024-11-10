@@ -1,3 +1,5 @@
+import { compareArray } from '@glacier/utils';
+
 import { InvalidRouteMethod } from './exceptions/InvalidRouteMethod';
 import { MultipleRoutesFound } from './exceptions/MultipleRoutesFound';
 import { RouteNotFound } from './exceptions/RouteNotFound';
@@ -5,7 +7,6 @@ import type { ResolvedRoute } from './interfaces/ResolvedRoute';
 import type { RouteDefinition } from './interfaces/RouteDefinition';
 import type { RouteRequest } from './interfaces/RouteRequest';
 import { RouterTrie } from './models/RouterTrie';
-import { compareArray } from '@glacier/utils';
 
 export class Router<T> {
   private readonly routerTrie = new RouterTrie<RouteDefinition<T>>();
@@ -16,7 +17,7 @@ export class Router<T> {
   }
 
   public getRoute(request: RouteRequest): ResolvedRoute<T> {
-    const result = this.routerTrie.find(request.path);
+    const result = this.routerTrie.findPath(request.path);
     if (result === undefined) {
       throw new RouteNotFound(request);
     }
@@ -29,24 +30,23 @@ export class Router<T> {
       throw new InvalidRouteMethod();
     }
 
+    // eslint-disable-next-line sonarjs/cognitive-complexity
     const matchingRoutes = matchingMethodRoutes.filter((route) => {
-      if (route.method !== request.method) {
-        return false;
+      if (!route.headers) {
+        return true;
       }
 
-      if (route.headers) {
-        const entries = Object.entries(route.headers);
-        for (const [name, value] of entries) {
-          const a1 = Array.isArray(value) ? value : [value];
-          const a2 = Array.isArray(request.headers[name]) ? request.headers[name] : [request.headers[name]];
+      const entries = Object.entries(route.headers);
+      for (const [name, value] of entries) {
+        const a1 = Array.isArray(value) ? value : [value];
+        const a2 = Array.isArray(request.headers[name])
+          ? request.headers[name]
+          : [request.headers[name]];
 
-          if (!compareArray(a1, a2)) {
-            return false;
-          }
+        if (!compareArray(a1, a2)) {
+          return false;
         }
       }
-
-      return true;
     });
 
     if (matchingRoutes.length === 0) {

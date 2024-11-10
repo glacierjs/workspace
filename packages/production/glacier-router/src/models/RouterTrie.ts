@@ -20,7 +20,8 @@ export class RouterTrie<T> {
     return this;
   }
 
-  public find(path: string): Optional<RouterTrieResult<T>> {
+  // eslint-disable-next-line sonarjs/cognitive-complexity
+  public findPath(path: string): Optional<RouterTrieResult<T>> {
     let node = this.root;
     const variables: Record<string, string> = {};
 

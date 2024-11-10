@@ -7,6 +7,7 @@
       <sourceFolder url="file://$MODULE_DIR$/packages/production/glacier-http/test" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/packages/production/glacier-ioc/test" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/packages/production/glacier-logger/test" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/packages/production/glacier-router/test" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/packages/production/glacier-context/dist" />
       <excludeFolder url="file://$MODULE_DIR$/packages/production/glacier-context/types" />
       <excludeFolder url="file://$MODULE_DIR$/packages/production/glacier-http/dist" />
@@ -17,6 +18,9 @@
       <excludeFolder url="file://$MODULE_DIR$/packages/production/glacier-logger/types" />
       <excludeFolder url="file://$MODULE_DIR$/packages/production/glacier-reflection/dist" />
       <excludeFolder url="file://$MODULE_DIR$/packages/production/glacier-reflection/types" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/production/glacier-router/coverage" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/production/glacier-router/dist" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/production/glacier-router/types" />
       <excludeFolder url="file://$MODULE_DIR$/packages/production/glacier-utils/dist" />
       <excludeFolder url="file://$MODULE_DIR$/packages/production/glacier-utils/types" />
     </content>

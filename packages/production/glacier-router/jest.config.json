@@ -1,3 +1,4 @@
 {
+  "coveragePathIgnorePatterns": ["src/exceptions"],
   "preset": "@glacier/jest"
 }

@@ -2,7 +2,7 @@
   "private": true,
   "scripts": {
     "workspace:clean": "git clean -Xdf",
-    "workspace:ci": "nx run-many -t build,lint,test:unit,test:scenario",
+    "workspace:ci": "nx run-many -t build,lint,test",
     "prepare": "husky"
   },
   "workspaces": [

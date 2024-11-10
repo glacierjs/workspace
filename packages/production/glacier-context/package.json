@@ -15,6 +15,6 @@
     "@glacier/typescript": "^1.0.0"
   },
   "dependencies": {
-    "@glacier/types": "^1.0.0"
+    "@glacier/utils": "^1.0.0"
   }
 }

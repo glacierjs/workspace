@@ -1,4 +1,4 @@
-import type { AnyConstructor, Optional } from '@glacier/types';
+import type { AnyConstructor, Optional } from '@glacier/utils';
 
 import type { InstanceCache } from '../interfaces/InstanceCache';
 

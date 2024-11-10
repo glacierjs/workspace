@@ -1,4 +1,4 @@
-import type { AbstractConstructor } from '@glacier/types';
+import type { AbstractConstructor } from '@glacier/utils';
 
 import { IOC_CONSTRUCTOR_PARAM } from '../reflection/IOC_CONSTRUCTOR_PARAM';
 

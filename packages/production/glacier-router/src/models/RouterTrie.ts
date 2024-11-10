@@ -1,4 +1,4 @@
-import type { Optional } from '@glacier/types';
+import type { Optional } from '@glacier/utils';
 
 import { RouterTrieNode } from './RouterTrieNode';
 import type { RouterTrieResult } from '../interfaces/RouterTrieResult';

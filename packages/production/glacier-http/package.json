@@ -15,7 +15,6 @@
   "devDependencies": {
     "@glacier/eslint-config": "^1.0.0",
     "@glacier/jest": "^1.0.0",
-    "@glacier/types": "^1.0.0",
     "@glacier/typescript": "^1.0.0"
   }
 }

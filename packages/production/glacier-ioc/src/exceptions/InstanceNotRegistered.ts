@@ -1,4 +1,4 @@
-import type { AbstractConstructor } from '@glacier/types';
+import type { AbstractConstructor } from '@glacier/utils';
 
 export class InstanceNotRegistered extends Error {
   public constructor(cls: AbstractConstructor) {

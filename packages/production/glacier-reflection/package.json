@@ -11,12 +11,12 @@
     "test:scenario": "jest --config ./test/jest.config.json"
   },
   "dependencies": {
-    "reflect-metadata": "^0.2.2"
+    "reflect-metadata": "^0.2.2",
+    "@glacier/utils": "^1.0.0"
   },
   "devDependencies": {
     "@glacier/eslint-config": "^1.0.0",
     "@glacier/jest": "^1.0.0",
-    "@glacier/types": "^1.0.0",
     "@glacier/typescript": "^1.0.0"
   }
 }

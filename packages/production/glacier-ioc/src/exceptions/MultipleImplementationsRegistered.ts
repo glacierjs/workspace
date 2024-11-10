@@ -1,4 +1,4 @@
-import type { AnyConstructor } from '@glacier/types';
+import type { AnyConstructor } from '@glacier/utils';
 
 export class MultipleImplementationsRegistered extends Error {
   public constructor(target: AnyConstructor) {

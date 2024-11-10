@@ -1,4 +1,4 @@
-import type { AnyString, Optional } from '@glacier/types';
+import type { AnyString, Optional } from '@glacier/utils';
 
 import type { HttpRequestHeader } from '../interfaces/HttpRequestHeader';
 

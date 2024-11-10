@@ -4,9 +4,8 @@ import type {
   AbstractConstructor,
   Constructor,
   Optional
-} from '@glacier/types';
-import { isConstructor } from '@glacier/types';
-import { getMethodNames } from '@glacier/utils';
+} from '@glacier/utils';
+import { isConstructor, getMethodNames } from '@glacier/utils';
 
 import { ScopedCache } from './caches/ScopedCache';
 import { SingletonCache } from './caches/SingletonCache';

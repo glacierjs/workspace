@@ -1,4 +1,4 @@
-import type { Constructor } from '@glacier/types';
+import type { Constructor } from '../types/Constructor';
 
 export function isConstructor(value: unknown): value is Constructor {
   return (

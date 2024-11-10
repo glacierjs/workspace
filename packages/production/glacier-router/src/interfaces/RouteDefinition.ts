@@ -1,5 +1,5 @@
 import type { HttpMethod, HttpRequestHeader } from '@glacier/http';
-import type { AnyString } from '@glacier/types';
+import type { AnyString } from '@glacier/utils';
 
 export interface RouteDefinition<T> {
   method: HttpMethod;

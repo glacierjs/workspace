@@ -3,7 +3,7 @@ import type { HttpRequestHandler } from '@glacier/http';
 import { createRequestListener, HttpResponse } from '@glacier/http';
 import { DIContainer } from '@glacier/ioc';
 import { RouteNotFound, Router } from '@glacier/router';
-import type { Constructor } from '@glacier/types';
+import type { Constructor } from '@glacier/utils';
 import { getMethodNames } from '@glacier/utils';
 import { Server } from 'node:http';
 

@@ -1,6 +1,6 @@
 import { DESIGN_PARAM_TYPES } from '@glacier/reflection';
-import type { Constructor } from '@glacier/types';
-import { isConstructor } from '@glacier/types';
+import type { Constructor } from '@glacier/utils';
+import { isConstructor } from '@glacier/utils';
 
 import type { DIContainer } from '../DIContainer';
 import { UnresolvableParam } from '../exceptions/UnresolvableParam';

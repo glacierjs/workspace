@@ -1,4 +1,4 @@
-import type { Optional } from '@glacier/types';
+import type { Optional } from '@glacier/utils';
 import { AsyncLocalStorage } from 'node:async_hooks';
 import { randomBytes } from 'node:crypto';
 

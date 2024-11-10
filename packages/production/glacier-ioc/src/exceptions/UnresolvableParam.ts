@@ -1,4 +1,4 @@
-import type { Constructor } from '@glacier/types';
+import type { Constructor } from '@glacier/utils';
 
 export class UnresolvableParam extends Error {
   public constructor(cls: Constructor, param: unknown, paramLocation: number) {

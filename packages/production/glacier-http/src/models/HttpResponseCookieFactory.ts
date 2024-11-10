@@ -1,4 +1,4 @@
-import type { Optional } from '@glacier/types';
+import type { Optional } from '@glacier/utils';
 
 import type { HttpResponseCookie } from './HttpResponseCookie';
 import { HttpResponseCookies } from './HttpResponseCookies';

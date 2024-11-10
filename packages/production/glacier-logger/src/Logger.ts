@@ -1,3 +1,5 @@
+import { globalContext } from '@glacier/context';
+
 import type { LogConfig } from './interfaces/LogConfig';
 import { LogLevel } from './interfaces/LogLevel';
 
@@ -23,7 +25,6 @@ export class Logger<V, M> {
   }
 
   public error(message: V): void {
-    if (this.config.level > LogLevel.ERROR) return;
     this.log(LogLevel.ERROR, message);
   }
 
@@ -32,6 +33,7 @@ export class Logger<V, M> {
       void transport.log({
         message: { ...this.config.defaultMeta, ...message },
         context: this.context,
+        contextId: globalContext.getId(),
         level
       });
     }

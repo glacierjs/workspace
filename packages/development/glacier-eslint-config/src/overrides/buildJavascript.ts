@@ -29,7 +29,8 @@ export function buildJavascript(): Linter.ConfigOverride<Linter.RulesRecord> {
       'unicorn/prefer-ternary': 'off',
       'sonarjs/prefer-single-boolean-return': 'off',
       'sonarjs/cognitive-complexity': ['error', 5],
-      'unicorn/no-array-for-each': 'off'
+      'unicorn/no-array-for-each': 'off',
+      'sonarjs/void-use': 'off'
     }
   };
 }

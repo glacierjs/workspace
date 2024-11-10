@@ -1,4 +1,3 @@
-import { globalContext } from '@glacier/context';
 import { stdout } from 'node:process';
 
 import { LogTransport } from '../entities/LogTransport';
@@ -10,12 +9,12 @@ export class ConsoleTransport extends LogTransport<{ message: string }> {
     const currentTime = new Date().toISOString();
     const logLevel = this.getColoredLevel(message.level);
     const context = this.getColoredContext(message.context);
-    const contextId = globalContext.getShortId();
+    const contextId = message.contextId;
     const logMessage = message.message.message;
     const formatted = [
       currentTime,
       logLevel,
-      contextId && this.colorize('34', contextId),
+      contextId ? this.colorize('34', contextId) : '        ',
       '---',
       context,
       logMessage,
@@ -52,9 +51,6 @@ export class ConsoleTransport extends LogTransport<{ message: string }> {
   }
 
   private padToLength(str: string, length: number): string {
-    if (str.length > length) {
-      return str.slice(0, length);
-    }
     return str.padEnd(length, ' ');
   }
 }

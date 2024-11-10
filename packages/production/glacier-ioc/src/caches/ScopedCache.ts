@@ -5,7 +5,7 @@ import type { InstanceFactory } from '../interfaces/InstanceFactory';
 
 export class ScopedCache<T> implements InstanceCache<T> {
   private readonly factory: InstanceFactory<T>;
-  private readonly instances = new WeakMap<symbol, T>();
+  private readonly instances = new Map<symbol | undefined, T>();
 
   public constructor(factory: InstanceFactory<T>) {
     this.factory = factory;

@@ -1,28 +1,43 @@
 import type { Optional } from '@glacier/types';
 import { AsyncLocalStorage } from 'node:async_hooks';
-import { randomUUID } from 'node:crypto';
+import { randomBytes } from 'node:crypto';
 
+/**
+ * The Context class is a small wrapper around AsyncLocalStorage and provides
+ * methods to retrieve a unique Symbol for a given request context.
+ */
 export class Context {
-  private mainContext = Symbol();
+  /**
+   * The AsyncLocalStorage instance used for all request contexts.
+   * @private
+   */
   private store = new AsyncLocalStorage<symbol>();
 
-  public getContext(): symbol {
-    return this.store.getStore() ?? this.mainContext;
+  /**
+   * Returns the current request Context or undefined if it is called in none.
+   */
+  public getContext(): Optional<symbol> {
+    return this.store.getStore();
   }
 
+  /**
+   * Returns the unique 8 character long identifier. Be aware, that the id is
+   * too short to provide a globally unique ID for every context. It should only be used
+   * for logging the current context the application is in.
+   */
   public getId(): Optional<string> {
     const context = this.getContext();
-    return Symbol.keyFor(context);
+    if (!context) return;
+    return context.description;
   }
 
-  public getShortId(): Optional<string> {
-    const id = this.getId();
-    if (!id) return;
-    return id.slice(0, 8);
-  }
-
-  public run<R>(callback: () => R): R {
-    const context = Symbol(randomUUID());
-    return this.store.run(context, callback);
+  /**
+   * Runs the given function inside a new context.
+   * @param fn The function that should be executed.
+   */
+  public run<R>(fn: () => R): R {
+    const id = randomBytes(4).toString('hex');
+    const context = Symbol(id);
+    return this.store.run(context, fn);
   }
 }

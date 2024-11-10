@@ -1,4 +1,0 @@
-{
-  "preset": "@glacier/jest",
-  "roots": ["src"]
-}

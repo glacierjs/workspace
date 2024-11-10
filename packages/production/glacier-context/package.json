@@ -7,12 +7,14 @@
     "build": "tsc -p tsconfig.build.json",
     "lint": "eslint index.ts src",
     "lint:fix": "eslint index.ts src --fix",
-    "test:unit": "jest",
     "test:scenario": "jest --config ./test/jest.config.json"
   },
   "devDependencies": {
     "@glacier/eslint-config": "^1.0.0",
     "@glacier/jest": "^1.0.0",
     "@glacier/typescript": "^1.0.0"
+  },
+  "dependencies": {
+    "@glacier/types": "^1.0.0"
   }
 }

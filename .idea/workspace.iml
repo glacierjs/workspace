@@ -15,6 +15,8 @@
       <excludeFolder url="file://$MODULE_DIR$/packages/production/glacier-ioc/types" />
       <excludeFolder url="file://$MODULE_DIR$/packages/production/glacier-logger/dist" />
       <excludeFolder url="file://$MODULE_DIR$/packages/production/glacier-logger/types" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/production/glacier-reflection/dist" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/production/glacier-reflection/types" />
       <excludeFolder url="file://$MODULE_DIR$/packages/production/glacier-utils/dist" />
       <excludeFolder url="file://$MODULE_DIR$/packages/production/glacier-utils/types" />
     </content>

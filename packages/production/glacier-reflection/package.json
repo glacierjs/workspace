@@ -7,8 +7,7 @@
     "build": "tsc -p tsconfig.build.json",
     "lint": "eslint index.ts src",
     "lint:fix": "eslint index.ts src --fix",
-    "test:unit": "jest",
-    "test:scenario": "jest --config ./test/jest.config.json"
+    "test": "jest"
   },
   "dependencies": {
     "reflect-metadata": "^0.2.2",

@@ -11,7 +11,7 @@ export class ReadonlyReflection<T> {
     target: Constructor | object,
     propertyKey?: string | symbol
   ): Optional<T> {
-    // @ts-ignore
+    // @ts-expect-error getMetadata is wrongly typed
     return Reflect.getMetadata(this.key, target, propertyKey);
   }
 
@@ -19,15 +19,7 @@ export class ReadonlyReflection<T> {
     target: Constructor | object,
     propertyKey?: string | symbol
   ): boolean {
-    // @ts-ignore
+    // @ts-expect-error hasMetadata is wrongly typed
     return Reflect.hasMetadata(this.key, target, propertyKey);
-  }
-
-  public hasOwn(
-    target: Constructor | object,
-    propertyKey?: string | symbol
-  ): boolean {
-    // @ts-ignore
-    return Reflect.hasOwnMetadata(this.key, target, propertyKey);
   }
 }

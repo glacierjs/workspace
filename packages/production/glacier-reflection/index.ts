@@ -1,3 +1,5 @@
+import 'reflect-metadata';
+
 export * from './src/Reflection';
 export * from './src/ReflectionMap';
 export * from './src/buildIn/DESIGN_TYPE';

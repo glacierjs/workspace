@@ -1,11 +1,10 @@
-import 'reflect-metadata';
 import type { Constructor } from '@glacier/utils';
 
 import { ReadonlyReflection } from './ReadonlyReflection';
 
 export class Reflection<T> extends ReadonlyReflection<T> {
   public set(value: T, target: object, propertyKey?: string | symbol): void {
-    // @ts-ignore
+    // @ts-expect-error defineMetadata is wrongly typed
     Reflect.defineMetadata(this.key, value, target, propertyKey);
   }
 
@@ -13,7 +12,7 @@ export class Reflection<T> extends ReadonlyReflection<T> {
     target: Constructor | object,
     propertyKey?: string | symbol
   ): boolean {
-    // @ts-ignore
+    // @ts-expect-error deleteMetadata is wrongly typed
     return Reflect.deleteMetadata(this.key, target, propertyKey);
   }
 }

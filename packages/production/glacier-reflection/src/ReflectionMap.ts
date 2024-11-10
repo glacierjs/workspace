@@ -46,11 +46,10 @@ export class ReflectionMap<T> {
     key: string | number,
     target: Constructor,
     propertyKey?: string | symbol
-  ): boolean {
+  ): void {
     const map = this.reflection.get(target, propertyKey);
     if (map) {
-      return map.delete(key);
+      map.delete(key);
     }
-    return false;
   }
 }

@@ -5,9 +5,9 @@
   "types": "types/index.d.ts",
   "scripts": {
     "build": "tsc -p tsconfig.build.json",
-    "lint": "eslint index.ts src",
-    "lint:fix": "eslint index.ts src --fix",
-    "test:scenario": "jest --config ./test/jest.config.json"
+    "lint": "eslint index.ts src test/scenarios",
+    "lint:fix": "eslint index.ts src test/scenarios --fix",
+    "test": "jest"
   },
   "dependencies": {
     "@glacier/context": "^1.0.0",

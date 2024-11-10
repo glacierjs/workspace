@@ -1,11 +1,9 @@
-import { Component } from '../../src/decorators/Component';
 import { DIContainer } from '../../src/DIContainer';
+import { Component } from '../../src/decorators/Component';
 
 it('should resolve a constructor parameter', () => {
-
   @Component()
-  class A {
-  }
+  class A {}
 
   const spy = jest.fn();
 

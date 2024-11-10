@@ -1,5 +1,5 @@
-import { Component } from "../../src/decorators/Component";
-import { DIContainer } from "../../src/DIContainer";
+import { DIContainer } from '../../src/DIContainer';
+import { Component } from '../../src/decorators/Component';
 
 it('should throw an error if multiple instances are defined', () => {
   abstract class I {}

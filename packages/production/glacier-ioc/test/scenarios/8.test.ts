@@ -1,17 +1,14 @@
+import { DIContainer } from '../../src/DIContainer';
 import { Factory } from '../../src/decorators/Factory';
 import { Module } from '../../src/decorators/Module';
-import { DIContainer } from '../../src/DIContainer';
 
 it('should register interfaces created by a factory', () => {
-  class B {
-  }
+  class B {}
 
-  class A {
-  }
+  class A {}
 
   @Module()
   class M {
-
     @Factory({ implements: [B] })
     public createA(): A {
       return new A();

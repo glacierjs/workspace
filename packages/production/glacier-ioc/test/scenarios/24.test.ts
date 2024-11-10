@@ -1,15 +1,12 @@
-import { Component } from '../../src/decorators/Component';
 import { DIContainer } from '../../src/DIContainer';
-import { ResolveOrThrow } from '../../src/decorators/ResolveOrThrow';
+import { Component } from '../../src/decorators/Component';
 import { ResolveAll } from '../../src/decorators/ResolveAll';
 
 it('should resolve a constructor parameter with an array if @ResolveAll is used', () => {
-
   abstract class I {}
 
   @Component()
-  class I1 extends I {
-  }
+  class I1 extends I {}
 
   @Component()
   class I2 extends I {}
@@ -27,5 +24,7 @@ it('should resolve a constructor parameter with an array if @ResolveAll is used'
   container.register(I, I1);
   container.register(I, I2);
   container.register(B, B);
-  expect(spy).toHaveBeenCalledWith(expect.arrayContaining([expect.any(I), expect.any(I)]));
+  expect(spy).toHaveBeenCalledWith(
+    expect.arrayContaining([expect.any(I), expect.any(I)])
+  );
 });

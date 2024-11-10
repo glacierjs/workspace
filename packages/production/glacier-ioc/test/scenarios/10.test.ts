@@ -1,6 +1,6 @@
+import { DIContainer } from '../../src/DIContainer';
 import { Factory } from '../../src/decorators/Factory';
 import { Module } from '../../src/decorators/Module';
-import { DIContainer } from '../../src/DIContainer';
 
 it('should ignore module methods that are not decorated with @Factory', () => {
   class A {}
@@ -8,7 +8,6 @@ it('should ignore module methods that are not decorated with @Factory', () => {
 
   @Module()
   class M {
-
     @Factory()
     public createA(): A {
       return new A();

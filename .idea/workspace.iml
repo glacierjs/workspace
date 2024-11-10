@@ -5,10 +5,13 @@
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/packages/production/glacier-context/test" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/packages/production/glacier-http/test" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/packages/production/glacier-ioc/test" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/packages/production/glacier-context/dist" />
       <excludeFolder url="file://$MODULE_DIR$/packages/production/glacier-context/types" />
       <excludeFolder url="file://$MODULE_DIR$/packages/production/glacier-http/dist" />
       <excludeFolder url="file://$MODULE_DIR$/packages/production/glacier-http/types" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/production/glacier-ioc/dist" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/production/glacier-ioc/types" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

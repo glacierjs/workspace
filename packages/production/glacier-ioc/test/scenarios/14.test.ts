@@ -1,5 +1,5 @@
-import { Component } from "../../src/decorators/Component";
-import { DIContainer } from "../../src/DIContainer";
+import { DIContainer } from '../../src/DIContainer';
+import { Component } from '../../src/decorators/Component';
 
 it('should resolve a list of instances', () => {
   abstract class I {}

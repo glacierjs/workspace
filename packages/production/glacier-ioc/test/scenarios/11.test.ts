@@ -1,11 +1,10 @@
+import { DIContainer } from '../../src/DIContainer';
 import { Factory } from '../../src/decorators/Factory';
 import { Module } from '../../src/decorators/Module';
-import { DIContainer } from '../../src/DIContainer';
 import { Scope } from '../../src/interfaces/Scope';
 
 it('should call factory function once for a singleton scope', () => {
-  class A {
-  }
+  class A {}
 
   @Module()
   class M {

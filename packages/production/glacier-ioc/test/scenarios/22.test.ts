@@ -1,13 +1,10 @@
-import { Component } from '../../src/decorators/Component';
 import { DIContainer } from '../../src/DIContainer';
-import { Resolve } from '../../src/decorators/Resolve';
+import { Component } from '../../src/decorators/Component';
 import { ResolveOrThrow } from '../../src/decorators/ResolveOrThrow';
 
 it('should resolve constructor parameter if @ResolveOrThrow is used', () => {
-
   @Component()
-  class A {
-  }
+  class A {}
 
   const spy = jest.fn();
 

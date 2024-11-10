@@ -1,6 +1,6 @@
+import { DIContainer } from '../../src/DIContainer';
 import { Component } from '../../src/decorators/Component';
 import { Module } from '../../src/decorators/Module';
-import { DIContainer } from '../../src/DIContainer';
 
 it('should register imported components by a module', () => {
   @Component()

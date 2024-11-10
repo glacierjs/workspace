@@ -1,12 +1,10 @@
-import { Component } from '../../src/decorators/Component';
 import { DIContainer } from '../../src/DIContainer';
+import { Component } from '../../src/decorators/Component';
 import { Resolve } from '../../src/decorators/Resolve';
 
 it('should resolve constructor parameter with undefined if @Resolve is used', () => {
-
   @Component()
-  class A {
-  }
+  class A {}
 
   const spy = jest.fn();
 

@@ -24,7 +24,5 @@ it('should resolve a constructor parameter with an array if @ResolveAll is used'
   container.register(I, I1);
   container.register(I, I2);
   container.register(B, B);
-  expect(spy).toHaveBeenCalledWith(
-    expect.arrayContaining([expect.any(I), expect.any(I)])
-  );
+  expect(spy).toHaveBeenCalledWith(expect.arrayContaining([expect.any(I), expect.any(I)]));
 });

@@ -28,10 +28,7 @@ describe('createRequestListener', () => {
   it('should return a basic 200 with content and headers', async () => {
     const body = Buffer.from('TEST');
     const requestHandler = createRequestListener(() => {
-      return HttpResponse.build()
-        .setStatus(200)
-        .setBody(body)
-        .addHeader('X-Test', '1234');
+      return HttpResponse.build().setStatus(200).setBody(body).addHeader('X-Test', '1234');
     });
     const server = createServer(requestHandler);
     const response = await request(server).get('/');

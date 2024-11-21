@@ -49,12 +49,8 @@ describe('HttpResponseCookie', () => {
     });
 
     it('should detect Expires attribute', () => {
-      const header = HttpResponseCookie.fromHeader(
-        'a=b; Expires=Sun, 10 Nov 2024 10:33:53 GMT'
-      );
-      expect(header[0].attributes.expires).toEqual(
-        new Date('2024-11-10T10:33:53.000Z')
-      );
+      const header = HttpResponseCookie.fromHeader('a=b; Expires=Sun, 10 Nov 2024 10:33:53 GMT');
+      expect(header[0].attributes.expires).toEqual(new Date('2024-11-10T10:33:53.000Z'));
     });
   });
 

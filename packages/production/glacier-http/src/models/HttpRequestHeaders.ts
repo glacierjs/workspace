@@ -18,9 +18,7 @@ export class HttpRequestHeaders {
    * if the header does not exist
    * @param name The name of the header search for
    */
-  public get(
-    name: AnyString<`${HttpRequestHeader}`>
-  ): Optional<Readonly<string[]>> {
+  public get(name: AnyString<`${HttpRequestHeader}`>): Optional<Readonly<string[]>> {
     if (name in this.headers) {
       return [...this.headers[name as string]];
     }

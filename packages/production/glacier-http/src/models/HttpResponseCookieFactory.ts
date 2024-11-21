@@ -24,11 +24,7 @@ export class HttpResponseCookieFactory extends HttpResponseHeaderFactory {
     return cookies.getCookies();
   }
 
-  public setCookie(
-    name: string,
-    value: string,
-    attributes: HttpCookieAttributes = {}
-  ): this {
+  public setCookie(name: string, value: string, attributes: HttpCookieAttributes = {}): this {
     const header = this.getHeader('Set-Cookie');
     const cookies = new HttpResponseCookies(header ?? []);
     cookies.setCookie(name, value, attributes);

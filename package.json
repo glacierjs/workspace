@@ -3,6 +3,7 @@
   "scripts": {
     "workspace:clean": "git clean -Xdf",
     "workspace:ci": "nx run-many -t build,lint,test",
+    "workspace:lint:fix": "nx run-many -t lint:fix",
     "prepare": "husky"
   },
   "workspaces": [

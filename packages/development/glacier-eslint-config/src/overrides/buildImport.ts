@@ -38,11 +38,7 @@ export function buildImport(): Linter.ConfigOverride<Linter.RulesRecord> {
             order: 'asc',
             caseInsensitive: false
           },
-          groups: [
-            ['builtin', 'external', 'internal'],
-            ['unknown', 'parent', 'sibling'],
-            'index'
-          ],
+          groups: [['builtin', 'external', 'internal'], ['unknown', 'parent', 'sibling'], 'index'],
           'newlines-between': 'always',
           warnOnUnassignedImports: false
         }

@@ -39,6 +39,9 @@
         "^build"
       ],
       "cache": true
+    },
+    "lint:fix": {
+      "inputs": ["source"]
     }
   }
 }

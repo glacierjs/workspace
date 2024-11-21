@@ -19,8 +19,7 @@ export class CacheStore {
    * @param cache The cache to build an instance of the given target.
    */
   public addCache<T>(target: AnyConstructor<T>, cache: InstanceCache<T>): void {
-    const existingInstances =
-      this.store.get(target) ?? new Set<InstanceCache<T>>();
+    const existingInstances = this.store.get(target) ?? new Set<InstanceCache<T>>();
     existingInstances.add(cache);
     this.store.set(target, existingInstances);
   }
@@ -30,9 +29,7 @@ export class CacheStore {
    * @param target The target that was used to add the cache.
    */
   public getCaches<T>(target: AnyConstructor<T>): InstanceCache<T>[] {
-    const existingInstances = this.store.get(target) as Optional<
-      Set<InstanceCache<T>>
-    >;
+    const existingInstances = this.store.get(target) as Optional<Set<InstanceCache<T>>>;
     if (!existingInstances) {
       return [];
     }

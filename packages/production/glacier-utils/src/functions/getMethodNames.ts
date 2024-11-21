@@ -5,9 +5,7 @@ export function getMethodNames(cls: Function): string[] {
   while (currentProto) {
     Object.getOwnPropertyNames(currentProto)
       .filter((prop) => {
-        return (
-          typeof cls.prototype[prop] === 'function' && prop !== 'constructor'
-        );
+        return typeof cls.prototype[prop] === 'function' && prop !== 'constructor';
       })
       .forEach((prop) => methods.add(prop));
 

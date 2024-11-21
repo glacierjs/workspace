@@ -8,12 +8,6 @@ import { buildTypescript } from './overrides/buildTypescript';
 
 export function buildConfig(): Linter.Config {
   return {
-    overrides: [
-      buildJavascript(),
-      buildTypescript(),
-      buildImport(),
-      buildPrettier(),
-      buildTests()
-    ]
+    overrides: [buildJavascript(), buildTypescript(), buildImport(), buildPrettier(), buildTests()]
   };
 }

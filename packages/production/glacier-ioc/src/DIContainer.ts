@@ -1,10 +1,6 @@
 import 'reflect-metadata';
 import { DESIGN_RETURN_TYPE } from '@glacier/reflection';
-import type {
-  AbstractConstructor,
-  Constructor,
-  Optional
-} from '@glacier/utils';
+import type { AbstractConstructor, Constructor, Optional } from '@glacier/utils';
 import { isConstructor, getMethodNames } from '@glacier/utils';
 
 import { ScopedCache } from './caches/ScopedCache';
@@ -120,18 +116,9 @@ export class DIContainer {
    * @param methodName The method name of the factory.
    * @private
    */
-  private registerModuleFactory(
-    implementation: Constructor,
-    methodName: string
-  ) {
-    const factoryMeta = IOC_FACTORY_META.get(
-      implementation.prototype,
-      methodName
-    )!;
-    const factoryReturnType = DESIGN_RETURN_TYPE.get(
-      implementation.prototype,
-      methodName
-    );
+  private registerModuleFactory(implementation: Constructor, methodName: string) {
+    const factoryMeta = IOC_FACTORY_META.get(implementation.prototype, methodName)!;
+    const factoryReturnType = DESIGN_RETURN_TYPE.get(implementation.prototype, methodName);
     this.assertConstructor(factoryReturnType);
     const customFactory = new CustomFactory(this, implementation, methodName);
     const scope = factoryMeta.scope ?? Scope.SINGLETON;
@@ -164,10 +151,7 @@ export class DIContainer {
    * @param implementation The actual implementing class.
    * @private
    */
-  private registerDefaultFactory(
-    target: AbstractConstructor,
-    implementation: Constructor
-  ): void {
+  private registerDefaultFactory(target: AbstractConstructor, implementation: Constructor): void {
     const componentMeta = IOC_COMPONENT_META.get(implementation)!;
     const factory = new DefaultFactory(this, implementation);
     const scope = componentMeta.scope ?? Scope.SINGLETON;
@@ -188,10 +172,7 @@ export class DIContainer {
    * @param factory The factory to store inside the cache.
    * @private
    */
-  private createCacheForScope<T>(
-    scope: Scope,
-    factory: InstanceFactory<T>
-  ): InstanceCache<T> {
+  private createCacheForScope<T>(scope: Scope, factory: InstanceFactory<T>): InstanceCache<T> {
     switch (scope) {
       case Scope.SINGLETON: {
         return new SingletonCache(factory);

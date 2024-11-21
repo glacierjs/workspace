@@ -8,10 +8,7 @@ export class Reflection<T> extends ReadonlyReflection<T> {
     Reflect.defineMetadata(this.key, value, target, propertyKey);
   }
 
-  public delete(
-    target: Constructor | object,
-    propertyKey?: string | symbol
-  ): boolean {
+  public delete(target: Constructor | object, propertyKey?: string | symbol): boolean {
     // @ts-expect-error deleteMetadata is wrongly typed
     return Reflect.deleteMetadata(this.key, target, propertyKey);
   }

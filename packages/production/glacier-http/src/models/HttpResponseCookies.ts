@@ -18,11 +18,7 @@ export class HttpResponseCookies {
     return this.cookies[name];
   }
 
-  public setCookie(
-    name: string,
-    value: string,
-    attributes?: HttpCookieAttributes
-  ): this {
+  public setCookie(name: string, value: string, attributes?: HttpCookieAttributes): this {
     this.cookies[name] = new HttpResponseCookie(name, value, attributes);
     return this;
   }

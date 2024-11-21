@@ -9,14 +9,8 @@ export class ReflectionMap<T> {
     this.reflection = new Reflection(key);
   }
 
-  public set(
-    key: string | number,
-    value: T,
-    target: object,
-    propertyKey?: string | symbol
-  ): void {
-    const map =
-      this.reflection.get(target as Constructor, propertyKey) ?? new Map();
+  public set(key: string | number, value: T, target: object, propertyKey?: string | symbol): void {
+    const map = this.reflection.get(target as Constructor, propertyKey) ?? new Map();
     map.set(key, value);
     this.reflection.set(map, target, propertyKey);
   }
@@ -30,11 +24,7 @@ export class ReflectionMap<T> {
     return map?.get(key);
   }
 
-  public has(
-    key: string | number,
-    target: Constructor,
-    propertyKey?: string | symbol
-  ): boolean {
+  public has(key: string | number, target: Constructor, propertyKey?: string | symbol): boolean {
     const map = this.reflection.get(target, propertyKey);
     if (map) {
       return map.has(key);
@@ -42,11 +32,7 @@ export class ReflectionMap<T> {
     return false;
   }
 
-  public delete(
-    key: string | number,
-    target: Constructor,
-    propertyKey?: string | symbol
-  ): void {
+  public delete(key: string | number, target: Constructor, propertyKey?: string | symbol): void {
     const map = this.reflection.get(target, propertyKey);
     if (map) {
       map.delete(key);

@@ -22,9 +22,7 @@ export class Router<T> {
       throw new RouteNotFound(request);
     }
 
-    const matchingMethodRoutes = result.values.filter(
-      (route) => route.method === request.method
-    );
+    const matchingMethodRoutes = result.values.filter((route) => route.method === request.method);
 
     if (matchingMethodRoutes.length === 0) {
       throw new InvalidRouteMethod();

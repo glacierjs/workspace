@@ -5,11 +5,7 @@ import type { HttpSameSite } from '../interfaces/HttpSameSite';
 export class HttpResponseCookie extends HttpRequestCookie {
   public readonly attributes: HttpCookieAttributes;
 
-  public constructor(
-    name: string,
-    value: string,
-    attributes: HttpCookieAttributes = {}
-  ) {
+  public constructor(name: string, value: string, attributes: HttpCookieAttributes = {}) {
     super(name, value);
     this.attributes = attributes;
   }
@@ -69,16 +65,12 @@ export class HttpResponseCookie extends HttpRequestCookie {
       this.attributes.partitioned && 'Partitioned',
       this.attributes.secure && 'Secure',
       this.attributes.path && `Path=${this.attributes.path}`,
-      typeof this.attributes.maxAge === 'number' &&
-        `Max-Age=${this.attributes.maxAge}`,
+      typeof this.attributes.maxAge === 'number' && `Max-Age=${this.attributes.maxAge}`,
       this.attributes.domain && `Domain=${this.attributes.domain}`,
       this.attributes.sameSite && `Same-Site=${this.attributes.sameSite}`,
-      this.attributes.expires &&
-        `Expires=${this.attributes.expires.toUTCString()}`
+      this.attributes.expires && `Expires=${this.attributes.expires.toUTCString()}`
     ];
 
-    return [`${this.name}=${this.value}`, ...attrStrings]
-      .filter(Boolean)
-      .join('; ');
+    return [`${this.name}=${this.value}`, ...attrStrings].filter(Boolean).join('; ');
   }
 }

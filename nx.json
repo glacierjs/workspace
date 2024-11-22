@@ -4,9 +4,7 @@
   "namedInputs": {
     "source": [
       "{projectRoot}/index.ts",
-      "{projectRoot}/src/**/*.ts"
-    ],
-    "scenarios": [
+      "{projectRoot}/src/**/*.ts",
       "{projectRoot}/test/scenarios/*.ts"
     ]
   },
@@ -22,15 +20,13 @@
       ],
       "cache": true
     },
-    "test:unit": {
+    "test": {
       "dependsOn": ["^build"],
       "inputs": ["source"],
-      "cache": true
-    },
-    "test:scenario": {
-      "dependsOn": ["^build"],
-      "inputs": ["source", "scenarios"],
-      "cache": true
+      "cache": true,
+      "outputs": [
+        "{projectRoot}/coverage"
+      ]
     },
     "lint": {
       "inputs": ["source"],

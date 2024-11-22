@@ -5,5 +5,7 @@ export * from './src/types/Constructor';
 export * from './src/types/AnyConstructor';
 export * from './src/types/AnyString';
 export * from './src/types/Optional';
+export * from './src/types/PrimitiveValue';
+export * from './src/types/LiteralType';
 export * from './src/types/AbstractConstructor';
 export * from './src/guards/isConstructor';

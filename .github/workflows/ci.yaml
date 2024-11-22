@@ -1,83 +1,74 @@
-name: Continues Integration
-on: push
+name: Continuous Integration
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
 jobs:
-  release:
-    name: Continues Integration
+  install_and_test:
+    name: Install Dependencies and Run Tests
     runs-on: ubuntu-latest
     environment: development
     steps:
+      # Checkout repository
       - name: Checkout
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+
+      # Setup Node.js
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 'lts/*'
+          cache: 'npm'  # Enables automatic dependency caching
+
+      # Install dependencies
       - name: Install dependencies
         run: npm ci
-      - name: Run Pipeline
+
+      # Run tests and pipeline
+      - name: Run CI pipeline
         run: npm run workspace:ci
-      - name: Sonar Qube - glacier/config
+
+  sonarqube:
+    name: SonarQube Analysis
+    runs-on: ubuntu-latest
+    needs: install_and_test
+    strategy:
+      matrix:
+        project:
+          - glacier-config
+          - glacier-context
+          - glacier-http
+          - glacier-ioc
+          - glacier-logger
+          - glacier-reflection
+          - glacier-router
+          - glacier-schema
+          - glacier-utils
+    steps:
+      # Checkout repository
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      # Setup Node.js (to reuse cached dependencies if needed)
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 'lts/*'
+
+      # SonarQube scan for each project
+      - name: Run SonarQube Analysis
         uses: SonarSource/sonarcloud-github-action@master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         with:
-          projectBaseDir: packages/production/glacier-config/
-      - name: Sonar Qube - glacier/context
-        uses: SonarSource/sonarcloud-github-action@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        with:
-          projectBaseDir: packages/production/glacier-context/
-      - name: Sonar Qube - glacier/http
-        uses: SonarSource/sonarcloud-github-action@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        with:
-          projectBaseDir: packages/production/glacier-http/
-      - name: Sonar Qube - glacier/ioc
-        uses: SonarSource/sonarcloud-github-action@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        with:
-          projectBaseDir: packages/production/glacier-ioc/
-      - name: Sonar Qube - glacier/logger
-        uses: SonarSource/sonarcloud-github-action@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        with:
-          projectBaseDir: packages/production/glacier-logger/
-      - name: Sonar Qube - glacier/reflection
-        uses: SonarSource/sonarcloud-github-action@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        with:
-          projectBaseDir: packages/production/glacier-reflection/
-      - name: Sonar Qube - glacier/router
-        uses: SonarSource/sonarcloud-github-action@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        with:
-          projectBaseDir: packages/production/glacier-router/
-      - name: Sonar Qube - glacier/schema
-        uses: SonarSource/sonarcloud-github-action@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        with:
-          projectBaseDir: packages/production/glacier-schema/
-      - name: Sonar Qube - glacier/utils
-        uses: SonarSource/sonarcloud-github-action@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        with:
-          projectBaseDir: packages/production/glacier-utils/
+          projectBaseDir: packages/production/${{ matrix.project }}/

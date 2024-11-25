@@ -57,6 +57,7 @@ jobs:
           - glacier-router
           - glacier-schema
           - glacier-utils
+          - glacier-openapi
     steps:
       # Checkout repository
       - name: Checkout

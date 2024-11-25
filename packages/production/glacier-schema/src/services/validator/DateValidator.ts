@@ -1,4 +1,4 @@
-import { ValidationIssue } from '../../exceptions/ValidationIssue';
+import { ValidationIssueException } from '../../exceptions/ValidationIssueException';
 import type { SchemaValidator } from '../../interfaces/SchemaValidator';
 import type { DateSchema } from '../../interfaces/schemas/DateSchema';
 
@@ -10,6 +10,6 @@ export class DateValidator implements SchemaValidator<DateSchema, Date> {
 
   private assertType(value: unknown): asserts value is Date {
     if (value instanceof Date) return;
-    throw new ValidationIssue('INVALID_TYPE', 'Expected value to be an instance of Date');
+    throw new ValidationIssueException('INVALID_TYPE', 'Expected value to be an instance of Date');
   }
 }

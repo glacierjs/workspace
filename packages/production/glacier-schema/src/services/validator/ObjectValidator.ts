@@ -1,5 +1,5 @@
 import type { UnknownValidator } from './UnknownValidator';
-import { ValidationIssue } from '../../exceptions/ValidationIssue';
+import { ValidationIssueException } from '../../exceptions/ValidationIssueException';
 import type { SchemaValidator } from '../../interfaces/SchemaValidator';
 import type { ObjectSchema } from '../../interfaces/schemas/ObjectSchema';
 import { SCHEMA_PROPERTIES } from '../../reflection/SCHEMA_PROPERTIES';
@@ -48,6 +48,6 @@ export class ObjectValidator implements SchemaValidator<ObjectSchema, object> {
 
   private assertType(value: unknown): asserts value is object {
     if (typeof value === 'object') return;
-    throw new ValidationIssue('INVALID_TYPE', 'Expected value to be of type object');
+    throw new ValidationIssueException('INVALID_TYPE', 'Expected value to be of type object');
   }
 }

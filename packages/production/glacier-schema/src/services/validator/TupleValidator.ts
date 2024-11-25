@@ -1,5 +1,5 @@
 import type { UnknownValidator } from './UnknownValidator';
-import { ValidationIssue } from '../../exceptions/ValidationIssue';
+import { ValidationIssueException } from '../../exceptions/ValidationIssueException';
 import type { SchemaValidator } from '../../interfaces/SchemaValidator';
 import type { TupleSchema } from '../../interfaces/schemas/TupleSchema';
 import type { IssueCollector } from '../IssueCollector';
@@ -24,11 +24,11 @@ export class TupleValidator implements SchemaValidator<TupleSchema, unknown[]> {
 
   private assertType(value: unknown): asserts value is unknown[] {
     if (Array.isArray(value)) return;
-    throw new ValidationIssue('INVALID_TYPE', 'Expected value to be an array');
+    throw new ValidationIssueException('INVALID_TYPE', 'Expected value to be an array');
   }
   private assertLength(value: unknown[], schema: TupleSchema): asserts value is unknown[] {
     if (value.length === schema.items.length) return;
-    throw new ValidationIssue(
+    throw new ValidationIssueException(
       'INVALID_LENGTH',
       `Expected array to have exactly ${schema.items.length} items.`
     );

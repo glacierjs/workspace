@@ -1,4 +1,4 @@
-import { ValidationIssue } from '../../exceptions/ValidationIssue';
+import { ValidationIssueException } from '../../exceptions/ValidationIssueException';
 import type { SchemaValidator } from '../../interfaces/SchemaValidator';
 import type { IntegerSchema } from '../../interfaces/schemas/IntegerSchema';
 import type { NumberSchema } from '../../interfaces/schemas/NumberSchema';
@@ -19,7 +19,7 @@ export class NumericValidator<T extends NumberSchema | IntegerSchema>
   private assertMultipleOf(value: number, schema: T): void {
     if (schema.multipleOf === undefined) return;
     if (value % schema.multipleOf === 0) return;
-    throw new ValidationIssue(
+    throw new ValidationIssueException(
       'INVALID_VALUE',
       `Expected value to be a multiple of ${schema.multipleOf}`
     );
@@ -28,19 +28,25 @@ export class NumericValidator<T extends NumberSchema | IntegerSchema>
   private assertExclusiveMaximum(value: number, schema: T): void {
     if (schema.exclusiveMaximum === undefined) return;
     if (value < schema.exclusiveMaximum) return;
-    throw new ValidationIssue('INVALID_RANGE', `Expected value to be lower ${schema.minimum}`);
+    throw new ValidationIssueException(
+      'INVALID_RANGE',
+      `Expected value to be lower ${schema.minimum}`
+    );
   }
 
   private assertExclusiveMinimum(value: number, schema: T): void {
     if (schema.exclusiveMinimum === undefined) return;
     if (value > schema.exclusiveMinimum) return;
-    throw new ValidationIssue('INVALID_RANGE', `Expected value to be higher ${schema.minimum}`);
+    throw new ValidationIssueException(
+      'INVALID_RANGE',
+      `Expected value to be higher ${schema.minimum}`
+    );
   }
 
   private assertMaximum(value: number, schema: T): void {
     if (schema.maximum === undefined) return;
     if (value <= schema.maximum) return;
-    throw new ValidationIssue(
+    throw new ValidationIssueException(
       'INVALID_RANGE',
       `Expected value to be lower or equal ${schema.minimum}`
     );
@@ -49,7 +55,7 @@ export class NumericValidator<T extends NumberSchema | IntegerSchema>
   private assertMinimum(value: number, schema: T): void {
     if (schema.minimum === undefined) return;
     if (value >= schema.minimum) return;
-    throw new ValidationIssue(
+    throw new ValidationIssueException(
       'INVALID_RANGE',
       `Expected value to be higher or equal ${schema.minimum}`
     );
@@ -57,6 +63,6 @@ export class NumericValidator<T extends NumberSchema | IntegerSchema>
 
   private assertType(value: unknown): asserts value is number {
     if (typeof value === 'number') return;
-    throw new ValidationIssue('INVALID_TYPE', 'Expected value to be of type number');
+    throw new ValidationIssueException('INVALID_TYPE', 'Expected value to be of type number');
   }
 }

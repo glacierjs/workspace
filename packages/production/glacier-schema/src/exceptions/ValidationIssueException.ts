@@ -1,4 +1,4 @@
-export class ValidationIssue extends Error {
+export class ValidationIssueException extends Error {
   public readonly type: string;
 
   public constructor(type: string, message: string) {

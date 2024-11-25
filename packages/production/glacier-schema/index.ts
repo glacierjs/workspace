@@ -1,6 +1,6 @@
 export * from './src/Validator';
 export * from './src/exceptions/ValidationException';
-export * from './src/exceptions/ValidationIssue';
+export * from './src/exceptions/ValidationIssueException';
 export * from './src/decorators/ArrayProperty';
 export * from './src/decorators/BooleanProperty';
 export * from './src/decorators/CyclicProperty';

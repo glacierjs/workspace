@@ -1,4 +1,4 @@
-import { ValidationIssue } from '../../exceptions/ValidationIssue';
+import { ValidationIssueException } from '../../exceptions/ValidationIssueException';
 import type { SchemaValidator } from '../../interfaces/SchemaValidator';
 import type { LiteralSchema } from '../../interfaces/schemas/LiteralSchema';
 
@@ -10,6 +10,9 @@ export class LiteralValidator implements SchemaValidator<LiteralSchema, unknown>
 
   private assertValue(expectedValue: unknown, value: unknown): asserts value is unknown {
     if (value === expectedValue) return;
-    throw new ValidationIssue('INVALID_VALUE', `Expected value to be ${String(expectedValue)}`);
+    throw new ValidationIssueException(
+      'INVALID_VALUE',
+      `Expected value to be ${String(expectedValue)}`
+    );
   }
 }

@@ -11,6 +11,7 @@ import type { RecordSchema } from './schemas/RecordSchema';
 import type { StringSchema } from './schemas/StringSchema';
 import type { TupleSchema } from './schemas/TupleSchema';
 import type { UnionSchema } from './schemas/UnionSchema';
+import type { UnknownSchema } from './schemas/UnknownSchema';
 
 export type Schema =
   | ArraySchema
@@ -25,4 +26,5 @@ export type Schema =
   | TupleSchema
   | UnionSchema
   | DateSchema
-  | ObjectSchema;
+  | ObjectSchema
+  | UnknownSchema;

@@ -1,0 +1,20 @@
+{
+  "name": "@glacier/openapi",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "types": "types/index.d.ts",
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "lint": "eslint index.ts src",
+    "lint:fix": "eslint index.ts src --fix",
+    "test": "jest"
+  },
+  "devDependencies": {
+    "@glacier/eslint-config": "^1.0.0",
+    "@glacier/jest": "^1.0.0",
+    "@glacier/typescript": "^1.0.0"
+  },
+  "dependencies": {
+    "@glacier/schema": "^1.0.0"
+  }
+}

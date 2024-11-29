@@ -50,6 +50,7 @@ jobs:
         project:
           - glacier-config
           - glacier-context
+          - glacier-openapi
           - glacier-http
           - glacier-ioc
           - glacier-logger
@@ -57,6 +58,7 @@ jobs:
           - glacier-router
           - glacier-schema
           - glacier-utils
+          - glacier-openapi
     steps:
       # Checkout repository
       - name: Checkout

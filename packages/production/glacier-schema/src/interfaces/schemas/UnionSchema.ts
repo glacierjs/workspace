@@ -1,8 +1,4 @@
-import type { BaseSchema } from './BaseSchema';
-import type { ObjectSchema } from './ObjectSchema';
+import type { DiscriminatedUnionSchema } from './DiscriminatedUnionSchema';
+import type { UnknownUnionSchema } from './UnknownUnionSchema';
 
-export interface UnionSchema extends BaseSchema {
-  type: 'union';
-  property: string;
-  items: ObjectSchema[];
-}
+export type UnionSchema = DiscriminatedUnionSchema | UnknownUnionSchema;

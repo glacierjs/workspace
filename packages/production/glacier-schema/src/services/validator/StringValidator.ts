@@ -1,4 +1,4 @@
-import { ValidationIssue } from '../../exceptions/ValidationIssue';
+import { ValidationIssueException } from '../../exceptions/ValidationIssueException';
 import type { SchemaValidator } from '../../interfaces/SchemaValidator';
 import type { StringSchema } from '../../interfaces/schemas/StringSchema';
 
@@ -13,13 +13,13 @@ export class StringValidator implements SchemaValidator<StringSchema, string> {
 
   private assertType(value: unknown): asserts value is string {
     if (typeof value === 'string') return;
-    throw new ValidationIssue('INVALID_TYPE', 'Expected value to be of type string');
+    throw new ValidationIssueException('INVALID_TYPE', 'Expected value to be of type string');
   }
 
   private assertMaxLength(value: string, maxLength?: number): void {
     if (maxLength === undefined) return;
     if (value.length <= maxLength) return;
-    throw new ValidationIssue(
+    throw new ValidationIssueException(
       'INVALID_LENGTH',
       `Expected value to have less then ${maxLength} characters.`
     );
@@ -28,7 +28,7 @@ export class StringValidator implements SchemaValidator<StringSchema, string> {
   private assertMinLength(value: string, minLength?: number): void {
     if (minLength === undefined) return;
     if (value.length >= minLength) return;
-    throw new ValidationIssue(
+    throw new ValidationIssueException(
       'INVALID_LENGTH',
       `Expected value to have more then ${minLength} characters.`
     );
@@ -37,6 +37,9 @@ export class StringValidator implements SchemaValidator<StringSchema, string> {
   private assertPattern(value: string, pattern?: RegExp): void {
     if (pattern === undefined) return;
     if (pattern.test(value)) return;
-    throw new ValidationIssue('INVALID_FORMAT', `Expected value to match pattern ${pattern}.`);
+    throw new ValidationIssueException(
+      'INVALID_FORMAT',
+      `Expected value to match pattern ${pattern}.`
+    );
   }
 }

@@ -1,4 +1,4 @@
-import { ValidationIssue } from '../../exceptions/ValidationIssue';
+import { ValidationIssueException } from '../../exceptions/ValidationIssueException';
 import type { SchemaValidator } from '../../interfaces/SchemaValidator';
 import type { EnumSchema } from '../../interfaces/schemas/EnumSchema';
 
@@ -11,7 +11,7 @@ export class EnumValidator implements SchemaValidator<EnumSchema, string> {
 
   private assertOneOf(value: string, options: string[]): void {
     if (options.includes(value)) return;
-    throw new ValidationIssue(
+    throw new ValidationIssueException(
       'INVALID_OPTION',
       `Expected value to be one of ${options.join(', ')}`
     );
@@ -19,6 +19,6 @@ export class EnumValidator implements SchemaValidator<EnumSchema, string> {
 
   private assertType(value: unknown): asserts value is string {
     if (typeof value === 'string') return;
-    throw new ValidationIssue('INVALID_TYPE', 'Expected value to be of type string');
+    throw new ValidationIssueException('INVALID_TYPE', 'Expected value to be of type string');
   }
 }

@@ -1,5 +1,5 @@
 import type { UnknownValidator } from './UnknownValidator';
-import { ValidationIssue } from '../../exceptions/ValidationIssue';
+import { ValidationIssueException } from '../../exceptions/ValidationIssueException';
 import type { SchemaValidator } from '../../interfaces/SchemaValidator';
 import type { RecordSchema } from '../../interfaces/schemas/RecordSchema';
 import type { IssueCollector } from '../IssueCollector';
@@ -43,7 +43,7 @@ export class RecordValidator
     if (schema.maxProperties === undefined) return;
     const keys = Object.keys(value);
     if (keys.length <= schema.maxProperties) return;
-    throw new ValidationIssue(
+    throw new ValidationIssueException(
       'INVALID_PROPERTIES',
       `Expected value to have less then ${schema.maxProperties} properties.`
     );
@@ -53,7 +53,7 @@ export class RecordValidator
     if (schema.minProperties === undefined) return;
     const keys = Object.keys(value);
     if (keys.length >= schema.minProperties) return;
-    throw new ValidationIssue(
+    throw new ValidationIssueException(
       'INVALID_PROPERTIES',
       `Expected value to have more then ${schema.minProperties} properties.`
     );
@@ -61,6 +61,6 @@ export class RecordValidator
 
   private assertType(value: unknown): asserts value is object {
     if (typeof value === 'object') return;
-    throw new ValidationIssue('INVALID_TYPE', 'Expected value to be of type object');
+    throw new ValidationIssueException('INVALID_TYPE', 'Expected value to be of type object');
   }
 }

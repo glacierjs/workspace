@@ -1,0 +1,4 @@
+{
+  "preset": "@glacier/jest",
+  "roots": ["src", "test/scenarios"]
+}

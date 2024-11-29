@@ -26,5 +26,25 @@ describe('ReflectionSet', () => {
       const set = new ReflectionSet<string>('T');
       expect(set.getAll(A)).toEqual([]);
     });
+
+    it('should return values from parent class', () => {
+      class A {}
+      class B extends A {}
+      const set = new ReflectionSet<string>('T');
+      set.add('A', A);
+      set.add('B', B);
+      expect(set.getAll(B)).toEqual(['B', 'A']);
+    });
+
+    it('should not return values from different child class', () => {
+      class A {}
+      class B extends A {}
+      class C extends A {}
+      const set = new ReflectionSet<string>('T');
+      set.add('A', A);
+      set.add('B', B);
+      set.add('C', C);
+      expect(set.getAll(B)).toEqual(['B', 'A']);
+    });
   });
 });

@@ -1,5 +1,5 @@
 import type { UnknownValidator } from './UnknownValidator';
-import { ValidationIssue } from '../../exceptions/ValidationIssue';
+import { ValidationIssueException } from '../../exceptions/ValidationIssueException';
 import type { SchemaValidator } from '../../interfaces/SchemaValidator';
 import type { ArraySchema } from '../../interfaces/schemas/ArraySchema';
 import type { IssueCollector } from '../IssueCollector';
@@ -27,7 +27,7 @@ export class ArrayValidator implements SchemaValidator<ArraySchema, unknown[]> {
   private assertMaxItems(value: unknown[], schema: ArraySchema): void {
     if (schema.maxItems === undefined) return;
     if (value.length <= schema.maxItems) return;
-    throw new ValidationIssue(
+    throw new ValidationIssueException(
       'INVALID_ARRAY',
       `Expected array to have at most ${schema.maxItems} items.`
     );
@@ -36,7 +36,7 @@ export class ArrayValidator implements SchemaValidator<ArraySchema, unknown[]> {
   private assertMinItems(value: unknown[], schema: ArraySchema): void {
     if (schema.minItems === undefined) return;
     if (value.length >= schema.minItems) return;
-    throw new ValidationIssue(
+    throw new ValidationIssueException(
       'INVALID_ARRAY',
       `Expected array to have at least ${schema.minItems} items.`
     );
@@ -46,11 +46,14 @@ export class ArrayValidator implements SchemaValidator<ArraySchema, unknown[]> {
     if (schema.uniqueItems === undefined) return;
     const uniqueItems = new Set(value);
     if (uniqueItems.size === value.length) return;
-    throw new ValidationIssue('INVALID_ARRAY', 'Expected value to consist of only unique items');
+    throw new ValidationIssueException(
+      'INVALID_ARRAY',
+      'Expected value to consist of only unique items'
+    );
   }
 
   private assertType(value: unknown): asserts value is unknown[] {
     if (Array.isArray(value)) return;
-    throw new ValidationIssue('INVALID_TYPE', 'Expected value to be an array');
+    throw new ValidationIssueException('INVALID_TYPE', 'Expected value to be an array');
   }
 }

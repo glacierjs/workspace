@@ -10,7 +10,7 @@ import { RecordValidator } from './RecordValidator';
 import { StringValidator } from './StringValidator';
 import { TupleValidator } from './TupleValidator';
 import { UnionValidator } from './UnionValidator';
-import { ValidationIssue } from '../../exceptions/ValidationIssue';
+import { ValidationIssueException } from '../../exceptions/ValidationIssueException';
 import type { Schema } from '../../interfaces/Schema';
 import type { SchemaValidator } from '../../interfaces/SchemaValidator';
 import type { IssueCollector } from '../IssueCollector';
@@ -33,7 +33,7 @@ export class UnknownValidator implements SchemaValidator<Schema, unknown> {
     try {
       return this.validateSchema(schema, value, issues);
     } catch (error) {
-      if (error instanceof ValidationIssue) {
+      if (error instanceof ValidationIssueException) {
         issues.addIssue(error.type, error.message);
       } else {
         throw error;
@@ -43,6 +43,9 @@ export class UnknownValidator implements SchemaValidator<Schema, unknown> {
 
   private validateSchema(schema: Schema, value: unknown, issues: IssueCollector): unknown {
     switch (schema.type) {
+      case 'unknown': {
+        return value;
+      }
       case 'cyclic': {
         return this.validateSchema(schema.factory(), value, issues);
       }

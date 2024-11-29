@@ -1,5 +1,5 @@
 import { NumericValidator } from './NumericValidator';
-import { ValidationIssue } from '../../exceptions/ValidationIssue';
+import { ValidationIssueException } from '../../exceptions/ValidationIssueException';
 import type { IntegerSchema } from '../../interfaces/schemas/IntegerSchema';
 
 export class IntegerValidator extends NumericValidator<IntegerSchema> {
@@ -11,6 +11,6 @@ export class IntegerValidator extends NumericValidator<IntegerSchema> {
 
   private assertInteger(value: number): void {
     if (Number.isInteger(value)) return;
-    throw new ValidationIssue('INVALID_PRECISION', 'Expected value to be an integer');
+    throw new ValidationIssueException('INVALID_PRECISION', 'Expected value to be an integer');
   }
 }

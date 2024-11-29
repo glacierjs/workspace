@@ -18,6 +18,7 @@
 | @glacier/[schema](https://github.com/glacierjs/workspace/tree/main/packages/production/glacier-schema)         | ![glacier-schema-build]     | ![glacier-schema-coverage]     | ![glacier-schema-reliability]     | ![glacier-schema-security]     | ![glacier-schema-sqale]     |
 | @glacier/[utils](https://github.com/glacierjs/workspace/tree/main/packages/production/glacier-utils)           | ![glacier-utils-build]      | ![glacier-utils-coverage]      | ![glacier-utils-reliability]      | ![glacier-utils-security]      | ![glacier-utils-sqale]      |
 | @glacier/[openapi](https://github.com/glacierjs/workspace/tree/main/packages/production/glacier-openapi)       | ![glacier-openapi-build]    | ![glacier-openapi-coverage]    | ![glacier-openapi-reliability]    | ![glacier-openapi-security]    | ![glacier-openapi-sqale]    |
+| @glacier/[client](https://github.com/glacierjs/workspace/tree/main/packages/production/glacier-client)         | ![glacier-client-build]    | ![glacier-client-coverage]    | ![glacier-client-reliability]    | ![glacier-client-security]    | ![glacier-client-sqale]    |
 
 [glacier-config-build]:         https://img.shields.io/github/actions/workflow/status/glacierjs/workspace/ci.yaml
 
@@ -118,3 +119,13 @@
 [glacier-openapi-security]:      https://sonarcloud.io/api/project_badges/measure?project=glacier-openapi&metric=security_rating
 
 [glacier-openapi-sqale]:         https://sonarcloud.io/api/project_badges/measure?project=glacier-openapi&metric=sqale_rating
+
+[glacier-client-build]:         https://img.shields.io/github/actions/workflow/status/glacierjs/workspace/ci.yaml
+
+[glacier-client-coverage]:      https://sonarcloud.io/api/project_badges/measure?project=glacier-client&metric=coverage
+
+[glacier-client-reliability]:   https://sonarcloud.io/api/project_badges/measure?project=glacier-client&metric=reliability_rating
+
+[glacier-client-security]:      https://sonarcloud.io/api/project_badges/measure?project=glacier-client&metric=security_rating
+
+[glacier-client-sqale]:         https://sonarcloud.io/api/project_badges/measure?project=glacier-client&metric=sqale_rating

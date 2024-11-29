@@ -7,7 +7,6 @@ import { NullSchemaModel } from './NullSchema.model';
 import { NumberSchemaModel } from './NumberSchema.model';
 import { ObjectSchemaModel } from './ObjectSchema.model';
 import { StringSchemaModel } from './StringSchema.model';
-import { UnknownSchemaModel } from './UnknownSchema.model';
 
 export type SchemaModel =
   | ObjectSchemaModel
@@ -16,13 +15,11 @@ export type SchemaModel =
   | NumberSchemaModel
   | BooleanSchemaModel
   | ArraySchemaModel
-  | NullSchemaModel
-  | UnknownSchemaModel;
+  | NullSchemaModel;
 
 export const schemaModel: UnionSchema = {
   type: 'union',
   items: [
-    { type: 'object', schema: ObjectSchemaModel },
     {
       type: 'union',
       property: 'type',
@@ -35,6 +32,6 @@ export const schemaModel: UnionSchema = {
         { type: 'object', schema: NullSchemaModel }
       ]
     },
-    { type: 'object', schema: UnknownSchemaModel }
+    { type: 'object', schema: ObjectSchemaModel }
   ]
 };

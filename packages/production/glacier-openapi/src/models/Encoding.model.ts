@@ -18,7 +18,7 @@ export class EncodingModel {
   @RecordProperty({
     isOptional: true,
     key: { type: 'string' },
-    value: { type: 'object', schema: HeaderModel }
+    value: { type: 'cyclic', factory: () => ({ type: 'object', schema: HeaderModel }) }
   })
   public declare headers?: Record<string, HeaderModel>;
 }

@@ -6872,8 +6872,6 @@ export const api2Mock: OpenAPIModel = {
               'OPERA_SINGER',
               'HR_ADVISOR',
               'PSYCHOLOGIST',
-              'PSYCHOTHERAPIST',
-              'PHYSIOTHERAPIST',
               'INTERIOR_DECORATOR',
               'RADIO_ANNOUNCER',
               'EXPERT',

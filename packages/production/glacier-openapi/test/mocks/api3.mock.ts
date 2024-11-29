@@ -9,6 +9,33 @@ export const api3Mock: OpenAPIModel = {
   paths: {
     '/v1': {
       get: {
+        responses: {
+          '200': {
+            description: 'Test',
+            headers: {
+              Location: {
+                content: {
+                  'application/json': {
+                    schema: { type: 'string' },
+                    encoding: {
+                      'application/json': {
+                        headers: {
+                          Location: {
+                            content: {
+                              'application/json': {
+                                schema: { type: 'string' }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
         callbacks: {
           myEvent: {
             '/callback': {

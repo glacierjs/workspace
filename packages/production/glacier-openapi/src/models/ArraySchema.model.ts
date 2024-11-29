@@ -43,7 +43,7 @@ export class ArraySchemaModel extends BaseSchemaModel {
         type: 'cyclic',
         factory: () => schemaModel
       },
-      { type: 'object', schema: BooleanSchemaModel }
+      { type: 'boolean' }
     ]
   })
   public declare unevaluatedItems?: SchemaModel | boolean;

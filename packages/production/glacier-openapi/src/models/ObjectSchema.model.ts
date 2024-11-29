@@ -13,7 +13,7 @@ import { DiscriminatorModel } from './Discriminator.model';
 import { schemaModel, SchemaModel } from './Schema.model';
 
 export class ObjectSchemaModel extends BaseSchemaModel {
-  @LiteralProperty('object')
+  @LiteralProperty('object', true)
   public declare type?: 'object';
 
   @ObjectProperty(DiscriminatorModel, true)
@@ -43,6 +43,7 @@ export class ObjectSchemaModel extends BaseSchemaModel {
   public declare patternProperties?: Record<string, SchemaModel>;
 
   @UnionProperty({
+    isOptional: true,
     items: [
       { type: 'cyclic', factory: () => schemaModel },
       { type: 'literal', value: false }

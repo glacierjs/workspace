@@ -33,3 +33,7 @@ export * from './src/interfaces/schemas/TupleSchema';
 export * from './src/interfaces/schemas/UnionSchema';
 export * from './src/interfaces/schemas/UnknownSchema';
 export * from './src/interfaces/schemas/UnknownUnionSchema';
+export * from './src/interfaces/ValidationIssue';
+export * from './src/interfaces/ValidationResult';
+export * from './src/interfaces/ValidationFailedResult';
+export * from './src/interfaces/ValidationSuccessResult';

@@ -1,15 +1,15 @@
-import { ObjectProperty, RecordProperty, StringProperty } from '@glacier/schema';
+import { RecordProperty, UnionProperty, UnknownProperty } from '@glacier/schema';
 
 import { EncodingModel } from './Encoding.model';
 import { ExampleModel } from './Example.model';
-import { SchemaModel } from './Schema.model';
+import { schemaModel, SchemaModel } from './Schema.model';
 
 export class MediaTypeModel {
-  @ObjectProperty(SchemaModel, true)
+  @UnionProperty({ ...schemaModel, isOptional: true })
   public declare schema?: SchemaModel;
 
-  @StringProperty({ isOptional: true })
-  public declare example?: string;
+  @UnknownProperty(true)
+  public declare example?: unknown;
 
   @RecordProperty({
     isOptional: true,

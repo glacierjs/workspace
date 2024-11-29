@@ -11,5 +11,5 @@ export class ApiKeySecuritySchemaModel extends BaseSecuritySchemaModel {
   public declare name: string;
 
   @EnumProperty(ApiKeyHeaderModel)
-  public declare in: ApiKeyHeaderModel;
+  public declare in: `${ApiKeyHeaderModel}`;
 }

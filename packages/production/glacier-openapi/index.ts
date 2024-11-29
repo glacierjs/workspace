@@ -1,169 +1,53 @@
-import type { OpenAPIModel } from './src/models/OpenAPI.model';
-
-const openapi: OpenAPIModel = {
-  openapi: '3.1.0',
-  info: {
-    version: '1.0.0',
-    title: 'Swagger Petstore',
-    license: {
-      name: 'MIT',
-      url: 'https://opensource.org/licenses/MIT'
-    }
-  },
-  servers: [
-    {
-      url: 'https://petstore.swagger.io/v1'
-    }
-  ],
-  paths: {
-    '/pets': {
-      get: {
-        summary: 'List all pets',
-        operationId: 'listPets',
-        tags: ['pets'],
-        parameters: [
-          {
-            name: 'limit',
-            in: 'query',
-            description: 'How many items to return at one time (max 100)',
-            required: false,
-            schema: {
-              type: 'integer',
-              format: 'int32'
-            }
-          }
-        ],
-        responses: {
-          '200': {
-            description: 'A paged array of pets',
-            headers: {
-              'x-next': {
-                description: 'A link to the next page of responses',
-                schema: {
-                  type: 'string'
-                }
-              }
-            },
-            content: {
-              'application/json': {
-                schema: {
-                  $ref: '#/components/schemas/Pets'
-                }
-              }
-            }
-          },
-          default: {
-            description: 'unexpected error',
-            content: {
-              'application/json': {
-                schema: {
-                  $ref: '#/components/schemas/Error'
-                }
-              }
-            }
-          }
-        }
-      },
-      post: {
-        summary: 'Create a pet',
-        operationId: 'createPets',
-        tags: ['pets'],
-        responses: {
-          '201': {
-            description: 'Null response'
-          },
-          default: {
-            description: 'unexpected error',
-            content: {
-              'application/json': {
-                schema: {
-                  $ref: '#/components/schemas/Error'
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    '/pets/{petId}': {
-      get: {
-        summary: 'Info for a specific pet',
-        operationId: 'showPetById',
-        tags: ['pets'],
-        parameters: [
-          {
-            name: 'petId',
-            in: 'path',
-            required: true,
-            description: 'The id of the pet to retrieve',
-            schema: {
-              type: 'string'
-            }
-          }
-        ],
-        responses: {
-          '200': {
-            description: 'Expected response to a valid request',
-            content: {
-              'application/json': {
-                schema: {
-                  $ref: '#/components/schemas/Pet'
-                }
-              }
-            }
-          },
-          default: {
-            description: 'unexpected error',
-            content: {
-              'application/json': {
-                schema: {
-                  $ref: '#/components/schemas/Error'
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  },
-  components: {
-    schemas: {
-      Pet: {
-        type: 'object',
-        required: ['id', 'name'],
-        properties: {
-          id: {
-            type: 'integer',
-            format: 'int64'
-          },
-          name: {
-            type: 'string'
-          },
-          tag: {
-            type: 'string'
-          }
-        }
-      },
-      Pets: {
-        type: 'array',
-        items: {
-          $ref: '#/components/schemas/Pet'
-        }
-      },
-      Error: {
-        type: 'object',
-        required: ['code', 'message'],
-        properties: {
-          code: {
-            type: 'integer',
-            format: 'int32'
-          },
-          message: {
-            type: 'string'
-          }
-        }
-      }
-    }
-  }
-};
-console.log(openapi);
+export * from './src/models/ApiKeyHeader.model';
+export * from './src/models/ApiKeySecuritySchema.model';
+export * from './src/models/ArraySchema.model';
+export * from './src/models/BaseParameter.model';
+export * from './src/models/BaseSchema.model';
+export * from './src/models/BaseSecuritySchema.model';
+export * from './src/models/BooleanSchema.model';
+export * from './src/models/Components.model';
+export * from './src/models/Contact.model';
+export * from './src/models/CookieParameter.model';
+export * from './src/models/Discriminator.model';
+export * from './src/models/Encoding.model';
+export * from './src/models/Example.model';
+export * from './src/models/ExternalDocumentation.model';
+export * from './src/models/Header.model';
+export * from './src/models/HeaderParameter.model';
+export * from './src/models/HttpSecuritySchema.model';
+export * from './src/models/Info.model';
+export * from './src/models/IntegerFormatEnum';
+export * from './src/models/IntegerSchema.model';
+export * from './src/models/License.model';
+export * from './src/models/Link.model';
+export * from './src/models/MediaType.model';
+export * from './src/models/MutualTLSSecuritySchema.model';
+export * from './src/models/NullSchema.model';
+export * from './src/models/NumberFormatEnum';
+export * from './src/models/NumberSchema.model';
+export * from './src/models/Oauth2AuthorizationCodeFlow.model';
+export * from './src/models/Oauth2BaseFlow';
+export * from './src/models/Oauth2ClientCredentialsFlow.model';
+export * from './src/models/Oauth2Flow.model';
+export * from './src/models/Oauth2Flows.model';
+export * from './src/models/Oauth2ImplicitFlow.model';
+export * from './src/models/Oauth2PasswordFlow.model';
+export * from './src/models/Oauth2SecuritySchema.model';
+export * from './src/models/ObjectSchema.model';
+export * from './src/models/OpenAPI.model';
+export * from './src/models/OpenIdConnectSecuritySchema.model';
+export * from './src/models/Operation.model';
+export * from './src/models/Parameter.model';
+export * from './src/models/PathItem.model';
+export * from './src/models/PathParameter.model';
+export * from './src/models/PropertyStyle.model';
+export * from './src/models/QueryParameter.model';
+export * from './src/models/RequestBody.model';
+export * from './src/models/Response.model';
+export * from './src/models/Schema.model';
+export * from './src/models/SecuritySchema.model';
+export * from './src/models/Server.model';
+export * from './src/models/ServerVariable.model';
+export * from './src/models/StringSchema.model';
+export * from './src/models/Tag.model';
+export * from './src/models/UnknownSchema.model';

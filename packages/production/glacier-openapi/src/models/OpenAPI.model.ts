@@ -1,10 +1,4 @@
-import {
-  ArrayProperty,
-  LiteralProperty,
-  ObjectProperty,
-  RecordProperty,
-  StringProperty
-} from '@glacier/schema';
+import { ArrayProperty, ObjectProperty, RecordProperty, StringProperty } from '@glacier/schema';
 
 import { ComponentsModel } from './Components.model';
 import { ExternalDocumentationModel } from './ExternalDocumentation.model';
@@ -14,8 +8,8 @@ import { ServerModel } from './Server.model';
 import { TagModel } from './Tag.model';
 
 export class OpenAPIModel {
-  @LiteralProperty('3.1.0')
-  public declare openapi: '3.1.0';
+  @StringProperty()
+  public declare openapi: string;
 
   @ObjectProperty(InfoModel)
   public declare info: InfoModel;

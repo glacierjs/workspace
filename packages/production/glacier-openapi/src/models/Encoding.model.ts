@@ -9,10 +9,10 @@ export class EncodingModel {
   @StringProperty({ isOptional: true })
   public declare style?: string;
 
-  @BooleanProperty({ isOptional: true })
+  @BooleanProperty(true)
   public declare explode?: boolean;
 
-  @BooleanProperty({ isOptional: true })
+  @BooleanProperty(true)
   public declare allowReserved?: boolean;
 
   @RecordProperty({

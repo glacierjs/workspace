@@ -15,6 +15,9 @@ export class PathItemModel {
   @StringProperty({ isOptional: true })
   public declare description?: string;
 
+  @StringProperty({ isOptional: true })
+  public declare $ref?: string;
+
   @ArrayProperty({ type: 'object', schema: ServerModel }, { isOptional: true })
   public declare servers?: ServerModel[];
 

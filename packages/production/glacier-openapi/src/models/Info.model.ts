@@ -7,7 +7,7 @@ export class InfoModel {
   @StringProperty()
   public declare title: string;
 
-  @StringProperty({ pattern: /^\d+\.\d+\.\d+$/ })
+  @StringProperty()
   public declare version: string;
 
   @StringProperty({ isOptional: true })

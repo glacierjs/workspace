@@ -16,14 +16,14 @@ import { PathParameterModel } from './PathParameter.model';
 import { QueryParameterModel } from './QueryParameter.model';
 import { RequestBodyModel } from './RequestBody.model';
 import { ResponseModel } from './Response.model';
-import { SchemaModel } from './Schema.model';
+import { schemaModel, SchemaModel } from './Schema.model';
 import { SecuritySchemaModel } from './SecuritySchema.model';
 
 export class ComponentsModel {
   @RecordProperty({
     isOptional: true,
     key: { type: 'string' },
-    value: { type: 'object', schema: SchemaModel }
+    value: schemaModel
   })
   public declare schemas?: Record<string, SchemaModel>;
 
@@ -86,7 +86,7 @@ export class ComponentsModel {
       ]
     }
   })
-  public declare securitySchema?: Record<string, SecuritySchemaModel>;
+  public declare securitySchemes?: Record<string, SecuritySchemaModel>;
 
   @RecordProperty({
     isOptional: true,

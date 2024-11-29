@@ -64,7 +64,7 @@ export class OperationModel {
     value: {
       type: 'record',
       key: { type: 'string' },
-      value: { type: 'object', schema: PathItemModel }
+      value: { type: 'cyclic', factory: () => ({ type: 'object', schema: PathItemModel }) }
     }
   })
   public declare callbacks?: Record<string, Record<string, PathItemModel>>;

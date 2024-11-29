@@ -1,15 +1,16 @@
 import {
   BooleanProperty,
   EnumProperty,
-  ObjectProperty,
   RecordProperty,
-  StringProperty
+  StringProperty,
+  UnionProperty,
+  UnknownProperty
 } from '@glacier/schema';
 
 import { ExampleModel } from './Example.model';
 import { MediaTypeModel } from './MediaType.model';
 import { PropertyStyleModel } from './PropertyStyle.model';
-import { SchemaModel } from './Schema.model';
+import { schemaModel, SchemaModel } from './Schema.model';
 
 export class BaseParameterModel {
   @StringProperty()
@@ -24,14 +25,14 @@ export class BaseParameterModel {
   @EnumProperty(PropertyStyleModel, true)
   public declare style?: PropertyStyleModel;
 
-  @ObjectProperty(SchemaModel, true)
+  @UnionProperty({ ...schemaModel, isOptional: true })
   public declare schema?: SchemaModel;
 
   @BooleanProperty(true)
   public declare explode?: boolean;
 
-  @StringProperty({ isOptional: true })
-  public declare example?: string;
+  @UnknownProperty(true)
+  public declare example?: unknown;
 
   @RecordProperty({
     isOptional: true,

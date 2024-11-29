@@ -43,6 +43,9 @@ export class UnknownValidator implements SchemaValidator<Schema, unknown> {
 
   private validateSchema(schema: Schema, value: unknown, issues: IssueCollector): unknown {
     switch (schema.type) {
+      case 'unknown': {
+        return value;
+      }
       case 'cyclic': {
         return this.validateSchema(schema.factory(), value, issues);
       }

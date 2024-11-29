@@ -50,6 +50,7 @@ jobs:
         project:
           - glacier-config
           - glacier-context
+          - glacier-openapi
           - glacier-http
           - glacier-ioc
           - glacier-logger

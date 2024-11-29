@@ -17,7 +17,7 @@
 | @glacier/[router](https://github.com/glacierjs/workspace/tree/main/packages/production/glacier-router)         | ![glacier-router-build]     | ![glacier-router-coverage]     | ![glacier-router-reliability]     | ![glacier-router-security]     | ![glacier-router-sqale]     |
 | @glacier/[schema](https://github.com/glacierjs/workspace/tree/main/packages/production/glacier-schema)         | ![glacier-schema-build]     | ![glacier-schema-coverage]     | ![glacier-schema-reliability]     | ![glacier-schema-security]     | ![glacier-schema-sqale]     |
 | @glacier/[utils](https://github.com/glacierjs/workspace/tree/main/packages/production/glacier-utils)           | ![glacier-utils-build]      | ![glacier-utils-coverage]      | ![glacier-utils-reliability]      | ![glacier-utils-security]      | ![glacier-utils-sqale]      |
-| @glacier/[utils](https://github.com/glacierjs/workspace/tree/main/packages/production/glacier-openapi)         | ![glacier-openapi-build]    | ![glacier-openapi-coverage]    | ![glacier-openapi-reliability]    | ![glacier-openapi-security]    | ![glacier-openapi-sqale]    |
+| @glacier/[openapi](https://github.com/glacierjs/workspace/tree/main/packages/production/glacier-openapi)       | ![glacier-openapi-build]    | ![glacier-openapi-coverage]    | ![glacier-openapi-reliability]    | ![glacier-openapi-security]    | ![glacier-openapi-sqale]    |
 
 [glacier-config-build]:         https://img.shields.io/github/actions/workflow/status/glacierjs/workspace/ci.yaml
 

@@ -10,7 +10,19 @@ export function createRequestListener(handler: HttpRequestHandler): RequestListe
       const requestBody = await streamToBuffer(req);
       const httpRequest = new HttpRequest(req, requestBody);
       const httpResponse = await handler(httpRequest);
-      httpResponse.applyResponse(res);
+      const responseHeaders = httpResponse.getHeaders();
+      const responseBody = httpResponse.getBody();
+
+      for (const header in responseHeaders) {
+        res.setHeader(header, responseHeaders[header]);
+      }
+      res.statusCode = httpResponse.getStatus();
+
+      if (responseBody !== undefined) {
+        res.write(responseBody);
+      }
+
+      res.end();
     })();
   };
 }

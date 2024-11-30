@@ -1,29 +1,14 @@
 import type { Optional } from '@glacier/utils';
-import type { ServerResponse } from 'node:http';
 
 import { HttpResponseCookieFactory } from './HttpResponseCookieFactory';
 import { HttpStatusCode } from '../interfaces/HttpStatusCode';
 
-export class HttpResponse extends HttpResponseCookieFactory {
+export class HttpResponseFactory extends HttpResponseCookieFactory {
   private status: HttpStatusCode = HttpStatusCode.OK;
   private body?: Buffer;
 
-  public static build(): HttpResponse {
-    return new HttpResponse();
-  }
-
-  public applyResponse(res: ServerResponse): void {
-    const responseHeaders = this.getHeaders();
-    for (const header in responseHeaders) {
-      res.setHeader(header, responseHeaders[header]);
-    }
-    res.statusCode = this.status;
-
-    if (this.body !== undefined) {
-      res.write(this.body);
-    }
-
-    res.end();
+  public static build(): HttpResponseFactory {
+    return new HttpResponseFactory();
   }
 
   public setStatus(status: HttpStatusCode): this {

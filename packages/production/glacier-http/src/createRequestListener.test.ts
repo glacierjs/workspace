@@ -2,12 +2,12 @@ import { createServer } from 'node:http';
 import request from 'supertest';
 
 import { createRequestListener } from './createRequestListener';
-import { HttpResponse } from './models/HttpResponse';
+import { HttpResponseFactory } from './models/HttpResponseFactory';
 
 describe('createRequestListener', () => {
   it('should return a basic 200 with no content or header', async () => {
     const requestHandler = createRequestListener(() => {
-      return HttpResponse.build().setStatus(200);
+      return HttpResponseFactory.build().setStatus(200);
     });
     const server = createServer(requestHandler);
     const response = await request(server).get('/');
@@ -17,7 +17,7 @@ describe('createRequestListener', () => {
   it('should return a basic 200 with content but no header', async () => {
     const body = Buffer.from('TEST');
     const requestHandler = createRequestListener(() => {
-      return HttpResponse.build().setStatus(200).setBody(body);
+      return HttpResponseFactory.build().setStatus(200).setBody(body);
     });
     const server = createServer(requestHandler);
     const response = await request(server).get('/');
@@ -28,7 +28,7 @@ describe('createRequestListener', () => {
   it('should return a basic 200 with content and headers', async () => {
     const body = Buffer.from('TEST');
     const requestHandler = createRequestListener(() => {
-      return HttpResponse.build().setStatus(200).setBody(body).addHeader('X-Test', '1234');
+      return HttpResponseFactory.build().setStatus(200).setBody(body).addHeader('X-Test', '1234');
     });
     const server = createServer(requestHandler);
     const response = await request(server).get('/');
@@ -39,7 +39,7 @@ describe('createRequestListener', () => {
 
   it('should return a basic 200 with content and cookies', async () => {
     const requestHandler = createRequestListener(() => {
-      return HttpResponse.build().setStatus(200).setCookie('a', 'b');
+      return HttpResponseFactory.build().setStatus(200).setCookie('a', 'b');
     });
     const server = createServer(requestHandler);
     const response = await request(server).get('/');

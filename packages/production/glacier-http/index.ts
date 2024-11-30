@@ -4,6 +4,7 @@ export * from './src/interfaces/HttpStatusCode';
 export * from './src/interfaces/HttpRequestHeader';
 export * from './src/interfaces/HttpResponseHeader';
 export * from './src/interfaces/HttpRequestHandler';
+export * from './src/interfaces/HttpResponse';
 
 // Exceptions
 export * from './src/exceptions/HttpException';
@@ -53,7 +54,7 @@ export * from './src/models/HttpRequest';
 export * from './src/models/HttpRequestCookie';
 export * from './src/models/HttpRequestCookies';
 export * from './src/models/HttpRequestHeaders';
-export * from './src/models/HttpResponse';
+export * from './src/models/HttpResponseFactory';
 export * from './src/models/HttpResponseCookie';
 export * from './src/models/HttpResponseCookieFactory';
 export * from './src/models/HttpResponseCookies';
